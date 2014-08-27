@@ -1,0 +1,10 @@
+{
+  "name": "file-icon-supplement",
+  "version": "0.0.1",
+  "description": "Additional file extension icons for all themes including full color icons",
+  "repository": "https://github.com/sscotth/file-icon-supplement",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.122.0"
+  }
+}
