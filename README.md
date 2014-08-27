@@ -20,6 +20,6 @@ You may then need to restart the Atom editor.
 * Full color, single color, and no color icons
 * Optional overriding of the active theme's icons
 
-## Issues :bug:
+## Issues and Pull Requests :bug:
 
-Please report any problems [here](https://github.com/sscotth/file-icon-supplement/issues).
+Please report any problems or feature suggestions [here](https://github.com/sscotth/file-icon-supplement/issues). Pull requests are welcome.
