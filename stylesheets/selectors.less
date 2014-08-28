@@ -1,0 +1,17 @@
+@tree-view: ~'ol.tree-view span.name.icon';
+@tabs: ~'ul.tab-bar li.tab .title:not(.hide-icon)';
+@fuzzy-finder: ~'.fuzzy-finder .file.icon';
+@find-and-replace: ~'.results-view span.icon';
+
+
+@{tree-view} {
+  &:before {
+    display: inline-block;
+  }
+}
+
+@{tree-view}, @{tabs}, @{fuzzy-finder}, @{find-and-replace}{
+  .file-extension(md);
+  .file-extension(json);
+
+}

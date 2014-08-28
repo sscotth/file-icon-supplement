@@ -1,0 +1,16 @@
+.font-content(md) {
+  .octicon-with-default-style(@markdown);
+}
+
+.font-content(json) {
+  .octicon-with-default-style(@settings);
+}
+
+.octicon-with-default-style(@icon){
+  font-family: @octicons;
+  content: @icon;
+  margin-right: 5px;
+  font-size: 16px;
+  top: 0;
+  left: 0;
+}

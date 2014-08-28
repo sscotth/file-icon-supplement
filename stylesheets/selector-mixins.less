@@ -1,0 +1,9 @@
+.file-extension(@ext){
+
+  &[data-name$=".@{ext}"] {
+    top: 0;
+    &:before {
+    .font-content(@ext);
+    }
+  }
+}
