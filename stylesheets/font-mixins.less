@@ -1,9 +1,24 @@
+@import "file-icon-supplement-utf-codes";
+
 .font-content(md) {
   .octicon-with-default-style(@markdown);
 }
 
 .font-content(json) {
   .octicon-with-default-style(@settings);
+}
+
+.font-content(LICENSE) {
+  .custom-font(@opensource)
+}
+
+.custom-font(@icon){
+  font-family: @fis;
+  content: @icon;
+  margin-right: 5px;
+  font-size: 16px;
+  top: 0;
+  left: 0;
 }
 
 .octicon-with-default-style(@icon){

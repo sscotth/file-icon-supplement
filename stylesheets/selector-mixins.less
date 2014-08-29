@@ -7,3 +7,12 @@
     }
   }
 }
+
+.file-name(@file){
+  &[data-name=@{file}]{
+    top: 0px;
+    &:before {
+      .font-content(@file)
+    }
+  }
+}
