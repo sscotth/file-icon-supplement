@@ -1,6 +1,6 @@
 # File Icon Supplement for the Atom Editor
 
-Additional file icons for the [Atom Editor](http://atom.io).
+Additional file icons for the [Atom Editor](http://atom.io). Optimized for atom-dark-ui/atom-light-ui based themes. Compatible with Unity, Seti, and others.
 
 ## Installation
 
