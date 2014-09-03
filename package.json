@@ -6,5 +6,6 @@
   "license": "MIT",
   "engines": {
     "atom": ">0.122.0"
-  }
+  },
+  "main": "./lib/file-icon-supplement"
 }
