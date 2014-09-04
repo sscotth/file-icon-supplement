@@ -53,3 +53,37 @@ describe 'file-icon-supplement base-ui', ->
       expect(atom.workspaceView.find '.fis-tab').toExist()
       expect(atom.workspaceView.find '.fis-tree.').toExist()
       expect(atom.workspaceView.find '.fis-grammar').toExist()
+
+  it 'it adds only the classes that are specificed in the config on open', ->
+    atom.config.set('file-icon-supplement.treeViewIcons', false)
+    atom.config.set('file-icon-supplement.tabIcons', false)
+    atom.config.set('file-icon-supplement.grammarIcons', false)
+
+    waitsForPromise ->
+      atom.packages.activatePackage 'file-icon-supplement'
+
+    atom.packages.emit('activated')
+
+    runs ->
+      expect(atom.workspaceView.find '.fis-tree').not.toExist()
+      expect(atom.workspaceView.find '.fis-tab').not.toExist()
+      expect(atom.workspaceView.find '.fis-grammar').not.toExist()
+
+  it 'it responds to changes in the config after open', ->
+    waitsForPromise ->
+      atom.packages.activatePackage 'file-icon-supplement'
+
+    atom.packages.emit('activated')
+
+    runs ->
+      expect(atom.workspaceView.find '.fis-tree').toExist()
+      expect(atom.workspaceView.find '.fis-tab').toExist()
+      expect(atom.workspaceView.find '.fis-grammar').toExist()
+
+      atom.config.set('file-icon-supplement.treeViewIcons', false)
+      atom.config.set('file-icon-supplement.tabIcons', false)
+      atom.config.set('file-icon-supplement.grammarIcons', false)
+
+      expect(atom.workspaceView.find '.fis-tree').not.toExist()
+      expect(atom.workspaceView.find '.fis-tab').not.toExist()
+      expect(atom.workspaceView.find '.fis-grammar').not.toExist()
