@@ -13,14 +13,14 @@ describe 'activation', ->
     atom.workspaceView = new WorkspaceView()
 
     waitsForPromise ->
-      atom.packages.activatePackage('tree-view')
+      atom.packages.activatePackage 'tree-view'
 
     runs ->
-      activationPromise = atom.packages.activatePackage('file-icon-supplement')
+      activationPromise = atom.packages.activatePackage 'file-icon-supplement'
 
   it 'it is disabled by default', ->
     expect(activationPromise.isFulfilled()).not.toBeTruthy()
-    expect(atom.packages.isPackageActive('file-icon-supplement')).toBe false
+    expect(atom.packages.isPackageActive 'file-icon-supplement').toBe false
 
   it 'it enables with event', ->
     atom.workspaceView.trigger 'editor:display-updated'
@@ -29,5 +29,5 @@ describe 'activation', ->
       activationPromise
 
     runs ->
-      expect(atom.packages.isPackageActive('file-icon-supplement')).toBe true
-      expect(atom.workspaceView.find('.fis-tree')).toExist()
+      expect(atom.packages.isPackageActive 'file-icon-supplement').toBe true
+      expect(atom.workspaceView.find '.fis-tree').toExist()
