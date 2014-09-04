@@ -12,9 +12,6 @@ describe 'activation', ->
   beforeEach ->
     atom.workspaceView = new WorkspaceView()
 
-    waitsForPromise ->
-      atom.packages.activatePackage 'tree-view'
-
     runs ->
       activationPromise = atom.packages.activatePackage 'file-icon-supplement'
 
@@ -30,4 +27,29 @@ describe 'activation', ->
 
     runs ->
       expect(atom.packages.isPackageActive 'file-icon-supplement').toBe true
-      expect(atom.workspaceView.find '.fis-tree').toExist()
+
+describe 'file-icon-supplement base-ui', ->
+
+  beforeEach ->
+    atom.workspaceView = new WorkspaceView
+    waitsForPromise ->
+      atom.packages.activatePackage 'tabs'
+    waitsForPromise ->
+      atom.packages.activatePackage 'tree-view'
+    waitsForPromise ->
+      atom.packages.activatePackage 'status-bar'
+    waitsForPromise ->
+      atom.packages.activatePackage 'grammar-selector'
+    waitsForPromise ->
+      atom.workspace.open()
+
+  it 'it automatically adds base-ui classes on open', ->
+    waitsForPromise ->
+      atom.packages.activatePackage 'file-icon-supplement'
+
+    atom.packages.emit('activated')
+
+    runs ->
+      expect(atom.workspaceView.find '.fis-tab').toExist()
+      expect(atom.workspaceView.find '.fis-tree.').toExist()
+      expect(atom.workspaceView.find '.fis-grammar').toExist()
