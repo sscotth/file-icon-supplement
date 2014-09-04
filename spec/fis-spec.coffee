@@ -30,4 +30,4 @@ describe 'activation', ->
 
     runs ->
       expect(atom.packages.isPackageActive('file-icon-supplement')).toBe true
-      expect(atom.workspaceView.find('.fis')).toExist()
+      expect(atom.workspaceView.find('.fis-tree')).toExist()
