@@ -51,7 +51,7 @@ describe 'file-icon-supplement base-ui', ->
 
     runs ->
       expect(atom.workspaceView.find '.fis-tab').toExist()
-      expect(atom.workspaceView.find '.fis-tree.').toExist()
+      expect(atom.workspaceView.find '.fis-tree').toExist()
       expect(atom.workspaceView.find '.fis-grammar').toExist()
 
   it 'it adds only the classes that are specificed in the config on open', ->
