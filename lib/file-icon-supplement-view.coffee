@@ -11,24 +11,36 @@ class FileIconSupplementView extends View
       => @addTabClass()
     atom.workspaceView.command 'file-icon-supplement:removeTabClass',
       => @removeTabClass()
+    atom.workspaceView.command 'file-icon-supplement:toggleTabClass',
+      => @toggleClass('tabIcons')
     atom.workspaceView.command 'file-icon-supplement:addTreeViewClass',
       => @addTreeViewClass()
     atom.workspaceView.command 'file-icon-supplement:removeTreeViewClass',
       => @removeTreeViewClass()
+    atom.workspaceView.command 'file-icon-supplement:toggleTreeViewClass',
+      => @toggleClass('treeViewIcons')
     atom.workspaceView.command 'file-icon-supplement:addFuzzyFinderClass',
       => @addFuzzyFinderClass()
     atom.workspaceView.command 'file-icon-supplement:removeFuzzyFinderClass',
       => @removeFuzzyFinderClass()
+    atom.workspaceView.command 'file-icon-supplement:toggleFuzzyFinderClass',
+      => @toggleClass('fuzzyFinderIcons')
     atom.workspaceView.command 'file-icon-supplement:addFindAndReplaceClass',
       => @addFindAndReplaceClass()
     atom.workspaceView.command 'file-icon-supplement:removeFindAndReplaceClass',
       => @removeFindAndReplaceClass()
+    atom.workspaceView.command 'file-icon-supplement:toggleFindAndReplaceClass',
+      => @toggleClass('findAndReplaceIcons')
     atom.workspaceView.command 'file-icon-supplement:addGrammarClass',
       => @addGrammarClass()
     atom.workspaceView.command 'file-icon-supplement:removeGrammarClass',
       => @removeGrammarClass()
+    atom.workspaceView.command 'file-icon-supplement:toggleGrammarClass',
+      => @toggleClass('grammarIcons')
     atom.workspaceView.command 'file-icon-supplement:removeAllClass',
       => @removeAllClass()
+    atom.workspaceView.command 'file-icon-supplement:toggleAllClass',
+      => @toggleClass()
 
     @subscribe atom.config.observe 'file-icon-supplement.tabIcons',
       => @loadTabSettings()
@@ -82,6 +94,10 @@ class FileIconSupplementView extends View
     target = atom.workspaceView.find('.fis.fis-fuzzy')
     target.removeClass('fis fis-fuzzy')
 
+  toggleFuzzyFinderClass: ->
+    current = atom.config.get 'file-icon-supplement.FuzzyFinderIcons'
+    atom.config.set 'file-icon-supplement.FuzzyFinderIcons', !current
+
   loadFuzzyFinderSettings: ->
     if atom.config.get 'file-icon-supplement.fuzzyFinderIcons'
       @addFuzzyFinderClass()
@@ -127,3 +143,42 @@ class FileIconSupplementView extends View
     @loadFuzzyFinderSettings()
     @loadFindAndReplaceSettings()
     @loadGrammarSettings()
+
+  toggleClass: (area) ->
+    if area
+      setting = 'file-icon-supplement.' + area
+      value = atom.config.get setting
+      atom.config.set setting, !value
+    else if @isToggledOn()
+      @setToggleClassCache()
+      @disableAllSettings()
+    else
+      @recoverToggleClassCache()
+
+  isToggledOn: ->
+    atom.config.get('file-icon-supplement.tabIcons') or
+    atom.config.get('file-icon-supplement.treeViewIcons') or
+    atom.config.get('file-icon-supplement.fuzzyFinderIcons') or
+    atom.config.get('file-icon-supplement.findAndReplaceIcons') or
+    atom.config.get('file-icon-supplement.grammarIcons')
+
+  toggleClassCache: {}
+
+  setToggleClassCache: ->
+    @toggleClassCache =
+      tabIcons: atom.config.get 'file-icon-supplement.tabIcons'
+      treeViewIcons: atom.config.get 'file-icon-supplement.treeViewIcons'
+      fuzzyFinder: atom.config.get 'file-icon-supplement.fuzzyFinderIcons'
+      findAndReplace: atom.config.get 'file-icon-supplement.findAndReplaceIcons'
+      grammarIcons: atom.config.get 'file-icon-supplement.grammarIcons'
+
+  recoverToggleClassCache: ->
+    for key, value of @toggleClassCache
+      atom.config.set 'file-icon-supplement.' + key, value
+
+  disableAllSettings: ->
+    atom.config.set 'file-icon-supplement.tabIcons', false
+    atom.config.set 'file-icon-supplement.treeViewIcons', false
+    atom.config.set 'file-icon-supplement.fuzzyFinderIcons', false
+    atom.config.set 'file-icon-supplement.findAndReplaceIcons', false
+    atom.config.set 'file-icon-supplement.grammarIcons', false

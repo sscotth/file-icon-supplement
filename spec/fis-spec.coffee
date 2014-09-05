@@ -87,3 +87,76 @@ describe 'file-icon-supplement base-ui', ->
       expect(atom.workspaceView.find '.fis-tree').not.toExist()
       expect(atom.workspaceView.find '.fis-tab').not.toExist()
       expect(atom.workspaceView.find '.fis-grammar').not.toExist()
+
+describe 'file-icon-supplement:toggles', ->
+  beforeEach ->
+    atom.workspaceView = new WorkspaceView
+    waitsForPromise ->
+      atom.packages.activatePackage 'tabs'
+    waitsForPromise ->
+      atom.packages.activatePackage 'tree-view'
+    waitsForPromise ->
+      atom.packages.activatePackage 'status-bar'
+    waitsForPromise ->
+      atom.packages.activatePackage 'grammar-selector'
+    waitsForPromise ->
+      atom.workspace.open()
+    waitsForPromise ->
+      atom.packages.activatePackage 'file-icon-supplement'
+    runs ->
+      atom.packages.emit('activated')
+
+  describe 'file-icon-supplement:toggleTreeViewClass', ->
+    it 'it can trigger a tree-view toggle', ->
+      atom.workspaceView.trigger 'file-icon-supplement:toggleTreeViewClass'
+      expect(atom.workspaceView.find '.fis-tree').not.toExist()
+      expect(atom.workspaceView.find '.fis-tab').toExist()
+      expect(atom.workspaceView.find '.fis-grammar').toExist()
+      atom.workspaceView.trigger 'file-icon-supplement:toggleTreeViewClass'
+      expect(atom.workspaceView.find '.fis-tree').toExist()
+      expect(atom.workspaceView.find '.fis-tab').toExist()
+      expect(atom.workspaceView.find '.fis-grammar').toExist()
+
+  describe 'file-icon-supplement:toggleTabClass', ->
+    it 'it can trigger a tab toggle', ->
+      atom.workspaceView.trigger 'file-icon-supplement:toggleTabClass'
+      expect(atom.workspaceView.find '.fis-tree').toExist()
+      expect(atom.workspaceView.find '.fis-tab').not.toExist()
+      expect(atom.workspaceView.find '.fis-grammar').toExist()
+      atom.workspaceView.trigger 'file-icon-supplement:toggleTabClass'
+      expect(atom.workspaceView.find '.fis-tree').toExist()
+      expect(atom.workspaceView.find '.fis-tab').toExist()
+      expect(atom.workspaceView.find '.fis-grammar').toExist()
+
+  describe 'file-icon-supplement:toggleGrammarClass', ->
+    it 'it can trigger a grammar toggle', ->
+      atom.workspaceView.trigger 'file-icon-supplement:toggleGrammarClass'
+      expect(atom.workspaceView.find '.fis-tree').toExist()
+      expect(atom.workspaceView.find '.fis-tab').toExist()
+      expect(atom.workspaceView.find '.fis-grammar').not.toExist()
+      atom.workspaceView.trigger 'file-icon-supplement:toggleGrammarClass'
+      expect(atom.workspaceView.find '.fis-tree').toExist()
+      expect(atom.workspaceView.find '.fis-tab').toExist()
+      expect(atom.workspaceView.find '.fis-grammar').toExist()
+
+  describe 'file-icon-supplement:toggleAllClass', ->
+    it 'it toggles all off on first trigger', ->
+      expect(atom.workspaceView.find '.fis-tree').toExist()
+      expect(atom.workspaceView.find '.fis-tab').toExist()
+      expect(atom.workspaceView.find '.fis-grammar').toExist()
+      atom.workspaceView.trigger 'file-icon-supplement:toggleAllClass'
+      expect(atom.workspaceView.find '.fis-tree').not.toExist()
+      expect(atom.workspaceView.find '.fis-tab').not.toExist()
+      expect(atom.workspaceView.find '.fis-grammar').not.toExist()
+      atom.workspaceView.trigger 'file-icon-supplement:toggleAllClass'
+      expect(atom.workspaceView.find '.fis-tree').toExist()
+      expect(atom.workspaceView.find '.fis-tab').toExist()
+      expect(atom.workspaceView.find '.fis-grammar').toExist()
+
+    it 'it only enables previously enabled areas on second trigger', ->
+      atom.workspaceView.trigger 'file-icon-supplement:toggleTabClass'
+      atom.workspaceView.trigger 'file-icon-supplement:toggleAllClass'
+      atom.workspaceView.trigger 'file-icon-supplement:toggleAllClass'
+      expect(atom.workspaceView.find '.fis-tree').toExist()
+      expect(atom.workspaceView.find '.fis-tab').not.toExist()
+      expect(atom.workspaceView.find '.fis-grammar').toExist()
