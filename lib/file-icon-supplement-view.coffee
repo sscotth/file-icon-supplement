@@ -7,27 +7,27 @@ class FileIconSupplementView extends View
     @div class: 'fis'
 
   initialize: (serializeState) ->
-    @command 'file-icon-supplement:addTabClass',
+    atom.workspaceView.command 'file-icon-supplement:addTabClass',
       => @addTabClass()
-    @command 'file-icon-supplement:removeTabClass',
+    atom.workspaceView.command 'file-icon-supplement:removeTabClass',
       => @removeTabClass()
-    @command 'file-icon-supplement:addTreeViewClass',
+    atom.workspaceView.command 'file-icon-supplement:addTreeViewClass',
       => @addTreeViewClass()
-    @command 'file-icon-supplement:removeTreeViewClass',
+    atom.workspaceView.command 'file-icon-supplement:removeTreeViewClass',
       => @removeTreeViewClass()
-    @command 'file-icon-supplement:addFuzzyFinderClass',
+    atom.workspaceView.command 'file-icon-supplement:addFuzzyFinderClass',
       => @addFuzzyFinderClass()
-    @command 'file-icon-supplement:removeFuzzyFinderClass',
+    atom.workspaceView.command 'file-icon-supplement:removeFuzzyFinderClass',
       => @removeFuzzyFinderClass()
-    @command 'file-icon-supplement:addFindAndReplaceClass',
+    atom.workspaceView.command 'file-icon-supplement:addFindAndReplaceClass',
       => @addFindAndReplaceClass()
-    @command 'file-icon-supplement:removeFindAndReplaceClass',
+    atom.workspaceView.command 'file-icon-supplement:removeFindAndReplaceClass',
       => @removeFindAndReplaceClass()
-    @command 'file-icon-supplement:addGrammarClass',
+    atom.workspaceView.command 'file-icon-supplement:addGrammarClass',
       => @addGrammarClass()
-    @command 'file-icon-supplement:removeGrammarClass',
+    atom.workspaceView.command 'file-icon-supplement:removeGrammarClass',
       => @removeGrammarClass()
-    @command 'file-icon-supplement:removeAllClass',
+    atom.workspaceView.command 'file-icon-supplement:removeAllClass',
       => @removeAllClass()
 
     @subscribe atom.config.observe 'file-icon-supplement.tabIcons',
