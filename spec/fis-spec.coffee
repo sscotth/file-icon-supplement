@@ -92,6 +92,8 @@ describe 'file-icon-supplement:toggles', ->
   beforeEach ->
     atom.workspaceView = new WorkspaceView
     waitsForPromise ->
+      atom.packages.activatePackage 'language-javascript'
+    waitsForPromise ->
       atom.packages.activatePackage 'tabs'
     waitsForPromise ->
       atom.packages.activatePackage 'tree-view'
@@ -100,7 +102,7 @@ describe 'file-icon-supplement:toggles', ->
     waitsForPromise ->
       atom.packages.activatePackage 'grammar-selector'
     waitsForPromise ->
-      atom.workspace.open()
+      atom.workspace.open 'example.js'
     waitsForPromise ->
       atom.packages.activatePackage 'file-icon-supplement'
     runs ->
@@ -160,3 +162,17 @@ describe 'file-icon-supplement:toggles', ->
       expect(atom.workspaceView.find '.fis-tree').toExist()
       expect(atom.workspaceView.find '.fis-tab').not.toExist()
       expect(atom.workspaceView.find '.fis-grammar').toExist()
+
+  describe 'file-icon-supplement:grammar', ->
+    it 'it adds a title attribute when opening a file', ->
+      expect(atom.workspaceView.find('.fis-grammar').attr 'title')
+        .toBe 'JavaScript'
+
+    it 'it changes title when opening a file of a different type', ->
+      waitsForPromise ->
+        atom.workspace.open 'example.txt'
+
+      runs ->
+        atom.workspaceView.statusBar.trigger 'active-buffer-changed'
+        expect(atom.workspaceView.find('.fis-grammar').attr 'title')
+          .toBe 'Plain Text'

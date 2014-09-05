@@ -52,6 +52,8 @@ class FileIconSupplementView extends View
       => @loadFindAndReplaceSettings()
     @subscribe atom.config.observe 'file-icon-supplement.grammarIcons',
       => @loadGrammarSettings()
+    @subscribe atom.workspaceView.statusBar, 'pane:active-item-changed',
+      => @updateGrammarTitle()
 
 
   serialize: ->
@@ -120,8 +122,13 @@ class FileIconSupplementView extends View
 
   addGrammarClass: ->
     target = atom.workspaceView.find('.status-bar-right > a:first-of-type')
+    target.addClass('fis fis-grammar')
+    @updateGrammarTitle()
+
+  updateGrammarTitle: ->
+    target = atom.workspaceView.find('.status-bar-right > a:first-of-type')
     activeGrammar = target.text()
-    target.addClass('fis fis-grammar').attr('title', activeGrammar)
+    target.attr('title', activeGrammar)
 
   removeGrammarClass: ->
     target = atom.workspaceView.find('.fis.fis-grammar')
