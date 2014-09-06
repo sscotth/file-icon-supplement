@@ -16,7 +16,7 @@ You may then need to restart the Atom editor.
 
 ## Features
 
-* Icons visible in tree-view, tabs, fuzzy-finder, and find-and-replace
+* Icons visible in tree-view, tabs, fuzzy-finder, and find-and-replace, status-bar, and grammar-selector
 * Respects the "Show Icons" setting on tabs
 * TODO: Full color, single color, and no color icons
 * TODO: Optional overriding of the active theme's icons
