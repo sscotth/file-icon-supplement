@@ -47,7 +47,7 @@ describe 'file-icon-supplement base-ui', ->
     waitsForPromise ->
       atom.packages.activatePackage 'file-icon-supplement'
 
-    atom.packages.emit('activated')
+    atom.packages.emit 'activated'
 
     runs ->
       expect(atom.workspaceView.find '.fis-tab').toExist()
@@ -55,14 +55,14 @@ describe 'file-icon-supplement base-ui', ->
       expect(atom.workspaceView.find '.fis-grammar').toExist()
 
   it 'it adds only the classes that are specificed in the config on open', ->
-    atom.config.set('file-icon-supplement.treeViewIcons', false)
-    atom.config.set('file-icon-supplement.tabIcons', false)
-    atom.config.set('file-icon-supplement.grammarIcons', false)
+    atom.config.set 'file-icon-supplement.treeViewIcons', false
+    atom.config.set 'file-icon-supplement.tabIcons', false
+    atom.config.set 'file-icon-supplement.grammarIcons', false
 
     waitsForPromise ->
       atom.packages.activatePackage 'file-icon-supplement'
 
-    atom.packages.emit('activated')
+    atom.packages.emit 'activated'
 
     runs ->
       expect(atom.workspaceView.find '.fis-tree').not.toExist()
@@ -73,16 +73,16 @@ describe 'file-icon-supplement base-ui', ->
     waitsForPromise ->
       atom.packages.activatePackage 'file-icon-supplement'
 
-    atom.packages.emit('activated')
+    atom.packages.emit 'activated'
 
     runs ->
       expect(atom.workspaceView.find '.fis-tree').toExist()
       expect(atom.workspaceView.find '.fis-tab').toExist()
       expect(atom.workspaceView.find '.fis-grammar').toExist()
 
-      atom.config.set('file-icon-supplement.treeViewIcons', false)
-      atom.config.set('file-icon-supplement.tabIcons', false)
-      atom.config.set('file-icon-supplement.grammarIcons', false)
+      atom.config.set 'file-icon-supplement.treeViewIcons', false
+      atom.config.set 'file-icon-supplement.tabIcons', false
+      atom.config.set 'file-icon-supplement.grammarIcons', false
 
       expect(atom.workspaceView.find '.fis-tree').not.toExist()
       expect(atom.workspaceView.find '.fis-tab').not.toExist()
@@ -106,7 +106,7 @@ describe 'file-icon-supplement:toggles', ->
     waitsForPromise ->
       atom.packages.activatePackage 'file-icon-supplement'
     runs ->
-      atom.packages.emit('activated')
+      atom.packages.emit 'activated'
 
   describe 'file-icon-supplement:toggleTreeViewClass', ->
     it 'it can trigger a tree-view toggle', ->
