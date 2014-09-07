@@ -52,7 +52,7 @@ class FileIconSupplementView extends View
       => @loadFindAndReplaceSettings()
     @subscribe atom.config.observe 'file-icon-supplement.grammarIcons',
       => @loadGrammarSettings()
-    @subscribe atom.workspaceView.statusBar, 'pane:active-item-changed',
+    @subscribe atom.workspaceView.statusBar, 'active-buffer-changed',
       => @updateGrammarTitle()
 
 
