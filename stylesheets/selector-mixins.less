@@ -17,3 +17,12 @@
     }
   }
 }
+
+.grammar-title(@title){
+  &[title^="@{title}"]{
+    font-size: 0;
+    &:before {
+      .font-content(@title)
+    }
+  }
+}

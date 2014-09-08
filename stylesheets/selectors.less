@@ -4,6 +4,7 @@
 @tabs: ~'.fis-tab:not(.hide-icon)';
 @fuzzy-finder: ~'.fis-fuzzy';
 @find-and-replace: ~'.fis-find';
+@grammar-status: ~'.fis-grammar';
 
 @{tree-view} {
   &:before {
@@ -14,5 +15,11 @@
 @{tree-view}, @{tabs}, @{fuzzy-finder}, @{find-and-replace}{
   .file-extension(md);
   .file-extension(json);
+  .file-extension(coffee);
+
   .file-name(LICENSE);
+}
+
+@{grammar-status} {
+  .grammar-title(CoffeeScript)
 }

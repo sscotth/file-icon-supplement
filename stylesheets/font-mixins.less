@@ -14,11 +14,20 @@
   .custom-font(@opensource)
 }
 
-.custom-font(@icon){
+.font-content(coffee) {
+  .custom-font(@coffeescript)
+}
+
+
+.font-content(CoffeeScript){
+  .custom-font(@coffeescript-text, 12px)
+}
+
+.custom-font(@icon, @fontsize: 16px){
   font-family: @fis;
   content: @icon;
   margin-right: 5px;
-  font-size: 16px;
+  font-size: @fontsize;
   top: 0;
   left: 0;
 }
