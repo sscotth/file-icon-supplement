@@ -1,4 +1,4 @@
-# File Icon Supplement for the Atom Editor
+# File Icon Supplement for the Atom Editor [![Build Status](https://travis-ci.org/sscotth/file-icon-supplement.svg?branch=master)](https://travis-ci.org/sscotth/file-icon-supplement)
 
 Additional file icons for the [Atom Editor](http://atom.io). Optimized for atom-dark-ui/atom-light-ui based themes. Compatible with Unity, Seti, and others.
 
