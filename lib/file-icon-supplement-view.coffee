@@ -98,7 +98,7 @@ class FileIconSupplementView extends View
 
   toggleFuzzyFinderClass: ->
     current = atom.config.get 'file-icon-supplement.FuzzyFinderIcons'
-    atom.config.set 'file-icon-supplement.FuzzyFinderIcons', !current
+    atom.config.set 'file-icon-supplement.fuzzyFinderIcons', !current
 
   loadFuzzyFinderSettings: ->
     if atom.config.get 'file-icon-supplement.fuzzyFinderIcons'
@@ -175,8 +175,9 @@ class FileIconSupplementView extends View
     @toggleClassCache =
       tabIcons: atom.config.get 'file-icon-supplement.tabIcons'
       treeViewIcons: atom.config.get 'file-icon-supplement.treeViewIcons'
-      fuzzyFinder: atom.config.get 'file-icon-supplement.fuzzyFinderIcons'
-      findAndReplace: atom.config.get 'file-icon-supplement.findAndReplaceIcons'
+      fuzzyFinderIcons: atom.config.get 'file-icon-supplement.fuzzyFinderIcons'
+      findAndReplaceIcons: atom.config.get(
+        'file-icon-supplement.findAndReplaceIcons')
       grammarIcons: atom.config.get 'file-icon-supplement.grammarIcons'
 
   recoverToggleClassCache: ->

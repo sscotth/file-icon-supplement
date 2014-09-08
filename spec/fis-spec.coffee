@@ -162,6 +162,7 @@ describe 'file-icon-supplement:toggles', ->
       expect(atom.workspaceView.find '.fis-tree').toExist()
       expect(atom.workspaceView.find '.fis-tab').not.toExist()
       expect(atom.workspaceView.find '.fis-grammar').toExist()
+      expect(Object.keys(atom.config.get 'file-icon-supplement').length).toBe 5
 
   describe 'file-icon-supplement:grammar', ->
     it 'it adds a title attribute when opening a file', ->
