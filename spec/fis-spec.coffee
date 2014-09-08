@@ -10,7 +10,9 @@ describe 'activation', ->
   activationPromise = null
 
   beforeEach ->
-    atom.workspaceView = new WorkspaceView()
+    atom.workspaceView = new WorkspaceView
+    waitsForPromise ->
+      atom.packages.activatePackage 'status-bar'
 
     runs ->
       activationPromise = atom.packages.activatePackage 'file-icon-supplement'
