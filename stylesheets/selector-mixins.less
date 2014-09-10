@@ -1,11 +1,19 @@
 @import 'font-mixins';
 
-.file-extension(@ext){
-  &[data-name$=".@{ext}"] {
-    top: 0;
-    &:before {
-      .font-content(@ext);
+.file-extension(@extensions; @icon; @font-family: @fis; @font-size: 16px){
+  .loop(length(@extensions));
+  .loop(@n) when (@n > 0) {
+    @ext: extract(@extensions, @n);
+    &[data-name$=".@{ext}"] {
+      top: 0;
+      &:before {
+        .icon-style;
+        font-family: @font-family;
+        content: @icon;
+        font-size: @font-size;
+      }
     }
+    .loop((@n - 1));
   }
 }
 
