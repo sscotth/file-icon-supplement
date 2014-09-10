@@ -3,40 +3,34 @@
 @import "fonts";
 
 .font-content(md) {
-  .octicon-with-default-style(@markdown);
+  .icon-font(@markdown; @octicons);
 }
 
 .font-content(json) {
-  .octicon-with-default-style(@settings);
+  .icon-font(@settings; @octicons);
 }
 
 .font-content(LICENSE) {
-  .custom-font(@opensource)
+  .icon-font(@opensource)
 }
 
 .font-content(coffee) {
-  .custom-font(@coffeescript)
+  .icon-font(@coffeescript)
 }
-
 
 .font-content(CoffeeScript){
-  .custom-font(@coffeescript-text, 12px)
+  .icon-font(@coffeescript-text, @fontsize: 12px)
 }
 
-.custom-font(@icon, @fontsize: 16px){
-  font-family: @fis;
-  content: @icon;
-  margin-right: 5px;
+.icon-style(@fontsize: 16px){
   font-size: @fontsize;
+  margin-right: 5px;
   top: 0;
   left: 0;
 }
 
-.octicon-with-default-style(@icon){
-  font-family: @octicons;
+.icon-font(@icon; @font-family: @fis; @fontsize: 16px){
+  .icon-style(@fontsize);
+  font-family: @font-family;
   content: @icon;
-  margin-right: 5px;
-  font-size: 16px;
-  top: 0;
-  left: 0;
 }
