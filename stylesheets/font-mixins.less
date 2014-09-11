@@ -2,15 +2,8 @@
 @import "file-icon-supplement-utf-codes";
 @import "fonts";
 
-.icon-style(@fontsize: 16px){
-  font-size: @fontsize;
-  margin-right: 5px;
-  top: 0;
-  left: 0;
-}
-
-.icon-font(@icon; @font-family; @fontsize){
-  .icon-style(@fontsize);
+.icon-font(@icon; @font-family; @fontsize: 16px){
+  font-size: (@fontsize);
   font-family: @font-family;
   content: @icon;
 }

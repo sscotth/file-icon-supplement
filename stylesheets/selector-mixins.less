@@ -4,17 +4,23 @@
   @regex: ~'$';
   @attr: ~'data-name@{regex}';
   @period: ~'.';
+  @text-font-size: inherit;
+  @margin-right: 5px;
 };
 
 .load-type-variables(@type) when (@type = file) {
   @regex: ~'^';
   @attr: ~'data-name@{regex}';
-  @period: ~''
+  @period: ~'';
+  @text-font-size: inherit;
+  @margin-right: 5px;
 };
 
 .load-type-variables(@type) when (@type = grammar) {
   @attr: ~'title';
-  @period: ~''
+  @period: ~'';
+  @text-font-size: 0;
+  @margin-right: 0;
 };
 
 .icon-generator(@type; @extensions; @icon; @font-family: @fis; @font-size: 16px){
@@ -23,8 +29,9 @@
   .loop(@n) when (@n > 0) {
     @ext: extract(@extensions, @n);
     &[@{attr}="@{period}@{ext}"] {
-      top: 0;
+      font-size: @text-font-size;
       &:before {
+        margin-right: @margin-right;
         .icon-font(@icon; @font-family; @font-size)
       }
     }

@@ -6,12 +6,6 @@
 @find-and-replace: ~'.fis-find';
 @grammar-status: ~'.fis-grammar';
 
-@{tree-view} {
-  &:before {
-    display: inline-block;
-  }
-}
-
 @{tree-view}, @{tabs}, @{fuzzy-finder}, @{find-and-replace}{
   .icon-generator(extension; md, mdown; @markdown; @octicons);
   .icon-generator(extension; json, cson; @settings; @octicons);
