@@ -13,13 +13,13 @@
 }
 
 @{tree-view}, @{tabs}, @{fuzzy-finder}, @{find-and-replace}{
-  .file-extension(md, mdown; @markdown; @octicons);
-  .file-extension(json, cson; @settings; @octicons);
-  .file-extension(coffee; @coffeescript);
+  .icon-generator(extension; md, mdown; @markdown; @octicons);
+  .icon-generator(extension; json, cson; @settings; @octicons);
+  .icon-generator(extension; coffee; @coffeescript);
+  .icon-generator(file; LICENSE; @opensource);
 
-  .file-name(LICENSE);
 }
 
 @{grammar-status} {
-  .grammar-title(CoffeeScript)
+  .icon-generator(grammar; CoffeeScript; @coffeescript-text; @font-size: 12px);
 }

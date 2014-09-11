@@ -2,14 +2,6 @@
 @import "file-icon-supplement-utf-codes";
 @import "fonts";
 
-.font-content(LICENSE) {
-  .icon-font(@opensource)
-}
-
-.font-content(CoffeeScript){
-  .icon-font(@coffeescript-text, @fontsize: 12px)
-}
-
 .icon-style(@fontsize: 16px){
   font-size: @fontsize;
   margin-right: 5px;
@@ -17,7 +9,7 @@
   left: 0;
 }
 
-.icon-font(@icon; @font-family: @fis; @fontsize: 16px){
+.icon-font(@icon; @font-family; @fontsize){
   .icon-style(@fontsize);
   font-family: @font-family;
   content: @icon;
