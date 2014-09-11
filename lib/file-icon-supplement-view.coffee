@@ -52,6 +52,10 @@ class FileIconSupplementView extends View
       => @loadFindAndReplaceSettings()
     @subscribe atom.config.observe 'file-icon-supplement.grammarIcons',
       => @loadGrammarSettings()
+
+    @subscribe atom.config.observe 'tabs.showIcons',
+      => @reloadStyleSheets()
+
     @subscribe atom.workspaceView.statusBar, 'active-buffer-changed',
       => @updateGrammarTitle()
 
@@ -63,6 +67,7 @@ class FileIconSupplementView extends View
   addTabClass: ->
     target = atom.workspaceView.find 'ul.tab-bar li.tab .title:not(.hide-icon)'
     target.addClass 'fis fis-tab'
+    @reloadStyleSheets()
 
   removeTabClass: ->
     target = atom.workspaceView.find '.fis.fis-tab'
@@ -77,6 +82,7 @@ class FileIconSupplementView extends View
   addTreeViewClass: ->
     target = atom.workspaceView.find 'ol.tree-view span.name.icon'
     target.addClass 'fis fis-tree'
+    @reloadStyleSheets()
 
   removeTreeViewClass: ->
     target = atom.workspaceView.find '.fis.fis-tree'
@@ -91,6 +97,7 @@ class FileIconSupplementView extends View
   addFuzzyFinderClass: ->
     target = atom.workspaceView.find '.fuzzy-finder .file.icon'
     target.addClass 'fis fis-fuzzy'
+    @reloadStyleSheets()
 
   removeFuzzyFinderClass: ->
     target = atom.workspaceView.find '.fis.fis-fuzzy'
@@ -109,6 +116,7 @@ class FileIconSupplementView extends View
   addFindAndReplaceClass: ->
     target = atom.workspaceView.find '.results-view span.icon'
     target.addClass 'fis fis-find'
+    @reloadStyleSheets()
 
   removeFindAndReplaceClass: ->
     target = atom.workspaceView.find '.fis.fis-find'
@@ -124,6 +132,7 @@ class FileIconSupplementView extends View
     target = atom.workspaceView.find '.status-bar-right > a:first-of-type'
     target.addClass 'fis fis-grammar'
     @updateGrammarTitle()
+    @reloadStyleSheets()
 
   updateGrammarTitle: ->
     target = atom.workspaceView.find '.status-bar-right > a:first-of-type'
@@ -190,3 +199,6 @@ class FileIconSupplementView extends View
     atom.config.set 'file-icon-supplement.fuzzyFinderIcons', false
     atom.config.set 'file-icon-supplement.findAndReplaceIcons', false
     atom.config.set 'file-icon-supplement.grammarIcons', false
+
+  reloadStyleSheets: ->
+    atom.themes.reloadBaseStylesheets()
