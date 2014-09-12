@@ -179,3 +179,18 @@ describe 'file-icon-supplement:toggles', ->
         atom.workspaceView.statusBar.trigger 'active-buffer-changed'
         expect(atom.workspaceView.find('.fis-grammar').attr 'title')
           .toBe 'Plain Text'
+
+    it 'it changes title when grammar changes', ->
+      waitsForPromise ->
+        atom.packages.activatePackage('language-coffee-script')
+
+      runs ->
+        expect(atom.workspaceView.getActivePaneItem().getGrammar().name)
+          .toBe 'JavaScript'
+        coffeeGrammar = atom.syntax.grammarForScopeName('source.coffee')
+        atom.workspace.getActiveEditor().setGrammar(coffeeGrammar)
+        expect(atom.workspaceView.getActivePaneItem().getGrammar().name)
+          .toBe 'CoffeeScript'
+        atom.workspace.getActiveEditor().emit 'grammar-changed'
+        expect(atom.workspaceView.find('.fis-grammar').attr 'title')
+          .toBe 'CoffeeScript'

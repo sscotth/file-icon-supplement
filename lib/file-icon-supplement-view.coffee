@@ -58,6 +58,10 @@ class FileIconSupplementView extends View
 
     @subscribe atom.workspaceView.statusBar, 'active-buffer-changed',
       => @updateGrammarTitle()
+    @subscribe atom.workspace.eachEditor (editor) =>
+      @subscribe editor, 'grammar-changed',
+        => @updateGrammarTitle()
+
 
 
   serialize: ->
