@@ -90,7 +90,7 @@ describe 'file-icon-supplement base-ui', ->
       expect(atom.workspaceView.find '.fis-tab').not.toExist()
       expect(atom.workspaceView.find '.fis-grammar').not.toExist()
 
-describe 'file-icon-supplement:toggles', ->
+describe 'file-icon-supplement', ->
   beforeEach ->
     atom.workspaceView = new WorkspaceView
     waitsForPromise ->
@@ -110,87 +110,90 @@ describe 'file-icon-supplement:toggles', ->
     runs ->
       atom.packages.emit 'activated'
 
-  describe 'file-icon-supplement:toggleTreeViewClass', ->
-    it 'it can trigger a tree-view toggle', ->
-      atom.workspaceView.trigger 'file-icon-supplement:toggleTreeViewClass'
-      expect(atom.workspaceView.find '.fis-tree').not.toExist()
-      expect(atom.workspaceView.find '.fis-tab').toExist()
-      expect(atom.workspaceView.find '.fis-grammar').toExist()
-      atom.workspaceView.trigger 'file-icon-supplement:toggleTreeViewClass'
-      expect(atom.workspaceView.find '.fis-tree').toExist()
-      expect(atom.workspaceView.find '.fis-tab').toExist()
-      expect(atom.workspaceView.find '.fis-grammar').toExist()
+  describe 'toggles', ->
 
-  describe 'file-icon-supplement:toggleTabClass', ->
-    it 'it can trigger a tab toggle', ->
-      atom.workspaceView.trigger 'file-icon-supplement:toggleTabClass'
-      expect(atom.workspaceView.find '.fis-tree').toExist()
-      expect(atom.workspaceView.find '.fis-tab').not.toExist()
-      expect(atom.workspaceView.find '.fis-grammar').toExist()
-      atom.workspaceView.trigger 'file-icon-supplement:toggleTabClass'
-      expect(atom.workspaceView.find '.fis-tree').toExist()
-      expect(atom.workspaceView.find '.fis-tab').toExist()
-      expect(atom.workspaceView.find '.fis-grammar').toExist()
+    describe 'file-icon-supplement:toggleTreeViewClass', ->
+      it 'it can trigger a tree-view toggle', ->
+        atom.workspaceView.trigger 'file-icon-supplement:toggleTreeViewClass'
+        expect(atom.workspaceView.find '.fis-tree').not.toExist()
+        expect(atom.workspaceView.find '.fis-tab').toExist()
+        expect(atom.workspaceView.find '.fis-grammar').toExist()
+        atom.workspaceView.trigger 'file-icon-supplement:toggleTreeViewClass'
+        expect(atom.workspaceView.find '.fis-tree').toExist()
+        expect(atom.workspaceView.find '.fis-tab').toExist()
+        expect(atom.workspaceView.find '.fis-grammar').toExist()
 
-  describe 'file-icon-supplement:toggleGrammarClass', ->
-    it 'it can trigger a grammar toggle', ->
-      atom.workspaceView.trigger 'file-icon-supplement:toggleGrammarClass'
-      expect(atom.workspaceView.find '.fis-tree').toExist()
-      expect(atom.workspaceView.find '.fis-tab').toExist()
-      expect(atom.workspaceView.find '.fis-grammar').not.toExist()
-      atom.workspaceView.trigger 'file-icon-supplement:toggleGrammarClass'
-      expect(atom.workspaceView.find '.fis-tree').toExist()
-      expect(atom.workspaceView.find '.fis-tab').toExist()
-      expect(atom.workspaceView.find '.fis-grammar').toExist()
+    describe 'file-icon-supplement:toggleTabClass', ->
+      it 'it can trigger a tab toggle', ->
+        atom.workspaceView.trigger 'file-icon-supplement:toggleTabClass'
+        expect(atom.workspaceView.find '.fis-tree').toExist()
+        expect(atom.workspaceView.find '.fis-tab').not.toExist()
+        expect(atom.workspaceView.find '.fis-grammar').toExist()
+        atom.workspaceView.trigger 'file-icon-supplement:toggleTabClass'
+        expect(atom.workspaceView.find '.fis-tree').toExist()
+        expect(atom.workspaceView.find '.fis-tab').toExist()
+        expect(atom.workspaceView.find '.fis-grammar').toExist()
 
-  describe 'file-icon-supplement:toggleAllClass', ->
-    it 'it toggles all off on first trigger', ->
-      expect(atom.workspaceView.find '.fis-tree').toExist()
-      expect(atom.workspaceView.find '.fis-tab').toExist()
-      expect(atom.workspaceView.find '.fis-grammar').toExist()
-      atom.workspaceView.trigger 'file-icon-supplement:toggleAllClass'
-      expect(atom.workspaceView.find '.fis-tree').not.toExist()
-      expect(atom.workspaceView.find '.fis-tab').not.toExist()
-      expect(atom.workspaceView.find '.fis-grammar').not.toExist()
-      atom.workspaceView.trigger 'file-icon-supplement:toggleAllClass'
-      expect(atom.workspaceView.find '.fis-tree').toExist()
-      expect(atom.workspaceView.find '.fis-tab').toExist()
-      expect(atom.workspaceView.find '.fis-grammar').toExist()
+    describe 'file-icon-supplement:toggleGrammarClass', ->
+      it 'it can trigger a grammar toggle', ->
+        atom.workspaceView.trigger 'file-icon-supplement:toggleGrammarClass'
+        expect(atom.workspaceView.find '.fis-tree').toExist()
+        expect(atom.workspaceView.find '.fis-tab').toExist()
+        expect(atom.workspaceView.find '.fis-grammar').not.toExist()
+        atom.workspaceView.trigger 'file-icon-supplement:toggleGrammarClass'
+        expect(atom.workspaceView.find '.fis-tree').toExist()
+        expect(atom.workspaceView.find '.fis-tab').toExist()
+        expect(atom.workspaceView.find '.fis-grammar').toExist()
 
-    it 'it only enables previously enabled areas on second trigger', ->
-      atom.workspaceView.trigger 'file-icon-supplement:toggleTabClass'
-      atom.workspaceView.trigger 'file-icon-supplement:toggleAllClass'
-      atom.workspaceView.trigger 'file-icon-supplement:toggleAllClass'
-      expect(atom.workspaceView.find '.fis-tree').toExist()
-      expect(atom.workspaceView.find '.fis-tab').not.toExist()
-      expect(atom.workspaceView.find '.fis-grammar').toExist()
-      expect(Object.keys(atom.config.get 'file-icon-supplement').length).toBe 5
+    describe 'file-icon-supplement:toggleAllClass', ->
+      it 'it toggles all off on first trigger', ->
+        expect(atom.workspaceView.find '.fis-tree').toExist()
+        expect(atom.workspaceView.find '.fis-tab').toExist()
+        expect(atom.workspaceView.find '.fis-grammar').toExist()
+        atom.workspaceView.trigger 'file-icon-supplement:toggleAllClass'
+        expect(atom.workspaceView.find '.fis-tree').not.toExist()
+        expect(atom.workspaceView.find '.fis-tab').not.toExist()
+        expect(atom.workspaceView.find '.fis-grammar').not.toExist()
+        atom.workspaceView.trigger 'file-icon-supplement:toggleAllClass'
+        expect(atom.workspaceView.find '.fis-tree').toExist()
+        expect(atom.workspaceView.find '.fis-tab').toExist()
+        expect(atom.workspaceView.find '.fis-grammar').toExist()
 
-  describe 'file-icon-supplement:grammar', ->
-    it 'it adds a title attribute when opening a file', ->
-      expect(atom.workspaceView.find('.fis-grammar').attr 'title')
-        .toBe 'JavaScript'
+      it 'it only enables previously enabled areas on second trigger', ->
+        atom.workspaceView.trigger 'file-icon-supplement:toggleTabClass'
+        atom.workspaceView.trigger 'file-icon-supplement:toggleAllClass'
+        atom.workspaceView.trigger 'file-icon-supplement:toggleAllClass'
+        expect(atom.workspaceView.find '.fis-tree').toExist()
+        expect(atom.workspaceView.find '.fis-tab').not.toExist()
+        expect(atom.workspaceView.find '.fis-grammar').toExist()
+        expect(Object.keys(atom.config.get 'file-icon-supplement').length)
+          .toBe 5
 
-    it 'it changes title when opening a file of a different type', ->
-      waitsForPromise ->
-        atom.workspace.open 'example.txt'
-
-      runs ->
-        atom.workspaceView.statusBar.trigger 'active-buffer-changed'
+    describe 'file-icon-supplement:grammar', ->
+      it 'it adds a title attribute when opening a file', ->
         expect(atom.workspaceView.find('.fis-grammar').attr 'title')
-          .toBe 'Plain Text'
-
-    it 'it changes title when grammar changes', ->
-      waitsForPromise ->
-        atom.packages.activatePackage('language-coffee-script')
-
-      runs ->
-        expect(atom.workspaceView.getActivePaneItem().getGrammar().name)
           .toBe 'JavaScript'
-        coffeeGrammar = atom.syntax.grammarForScopeName('source.coffee')
-        atom.workspace.getActiveEditor().setGrammar(coffeeGrammar)
-        expect(atom.workspaceView.getActivePaneItem().getGrammar().name)
-          .toBe 'CoffeeScript'
-        atom.workspace.getActiveEditor().emit 'grammar-changed'
-        expect(atom.workspaceView.find('.fis-grammar').attr 'title')
-          .toBe 'CoffeeScript'
+
+      it 'it changes title when opening a file of a different type', ->
+        waitsForPromise ->
+          atom.workspace.open 'example.txt'
+
+        runs ->
+          atom.workspaceView.statusBar.trigger 'active-buffer-changed'
+          expect(atom.workspaceView.find('.fis-grammar').attr 'title')
+            .toBe 'Plain Text'
+
+      it 'it changes title when grammar changes', ->
+        waitsForPromise ->
+          atom.packages.activatePackage('language-coffee-script')
+
+        runs ->
+          expect(atom.workspaceView.getActivePaneItem().getGrammar().name)
+            .toBe 'JavaScript'
+          coffeeGrammar = atom.syntax.grammarForScopeName('source.coffee')
+          atom.workspace.getActiveEditor().setGrammar(coffeeGrammar)
+          expect(atom.workspaceView.getActivePaneItem().getGrammar().name)
+            .toBe 'CoffeeScript'
+          atom.workspace.getActiveEditor().emit 'grammar-changed'
+          expect(atom.workspaceView.find('.fis-grammar').attr 'title')
+            .toBe 'CoffeeScript'
