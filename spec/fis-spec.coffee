@@ -185,12 +185,12 @@ describe 'file-icon-supplement', ->
 
       it 'it changes title when grammar changes', ->
         waitsForPromise ->
-          atom.packages.activatePackage('language-coffee-script')
+          atom.packages.activatePackage 'language-coffee-script'
 
         runs ->
           expect(atom.workspaceView.getActivePaneItem().getGrammar().name)
             .toBe 'JavaScript'
-          coffeeGrammar = atom.syntax.grammarForScopeName('source.coffee')
+          coffeeGrammar = atom.syntax.grammarForScopeName 'source.coffee'
           atom.workspace.getActiveEditor().setGrammar(coffeeGrammar)
           expect(atom.workspaceView.getActivePaneItem().getGrammar().name)
             .toBe 'CoffeeScript'
