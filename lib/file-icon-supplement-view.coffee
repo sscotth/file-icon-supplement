@@ -57,10 +57,10 @@ class FileIconSupplementView extends View
       => @reloadStyleSheets()
 
     @subscribe atom.workspaceView.statusBar, 'active-buffer-changed',
-      => @updateGrammarTitle()
+      => @updateGrammarStatus()
     @subscribe atom.workspace.eachEditor (editor) =>
       @subscribe editor, 'grammar-changed',
-        => @updateGrammarTitle()
+        => @updateGrammarStatus()
     @subscribe atom.workspaceView, 'project-find:show',
       => @addFindAndReplaceEvent()
     @subscribe atom.workspaceView, 'fuzzy-finder:toggle-file-finder',
@@ -150,15 +150,15 @@ class FileIconSupplementView extends View
           @addFindAndReplaceClass()
 
   addGrammarClass: ->
-    target = atom.workspaceView.find '.status-bar-right > a:first-of-type'
+    target = atom.workspaceView.find '.grammar-status a'
     target.addClass 'fis fis-grammar'
-    @updateGrammarTitle()
+    @updateGrammarStatus()
     @reloadStyleSheets()
 
-  updateGrammarTitle: ->
-    target = atom.workspaceView.find '.status-bar-right > a:first-of-type'
+  updateGrammarStatus: ->
+    target = atom.workspaceView.find '.grammar-status a'
     activeGrammar = target.text()
-    target.attr 'title', activeGrammar
+    target.attr 'data-grammar', activeGrammar
 
   removeGrammarClass: ->
     target = atom.workspaceView.find '.fis.fis-grammar'
