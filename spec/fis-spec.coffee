@@ -1,4 +1,8 @@
 {WorkspaceView} = require 'atom'
+path = require 'path'
+wrench = require 'wrench'
+fs = require 'fs-plus'
+temp = require('temp').track()
 
 describe "Test Suite", ->
   it "has some expectations that should pass", ->
@@ -92,6 +96,12 @@ describe 'file-icon-supplement base-ui', ->
 
 describe 'file-icon-supplement', ->
   beforeEach ->
+    atom.project.setPath path.join __dirname, 'fixtures'
+    tempPath = fs.realpathSync temp.mkdirSync 'atom'
+    fixturesPath = atom.project.getPath()
+    wrench.copyDirSyncRecursive fixturesPath, tempPath, forceDelete: true
+    atom.project.setPath path.join tempPath, 'file-icon-supplement'
+
     atom.workspaceView = new WorkspaceView
     waitsForPromise ->
       atom.packages.activatePackage 'language-javascript'
@@ -99,6 +109,8 @@ describe 'file-icon-supplement', ->
       atom.packages.activatePackage 'tabs'
     waitsForPromise ->
       atom.packages.activatePackage 'tree-view'
+    waitsForPromise ->
+      atom.packages.activatePackage 'fuzzy-finder'
     waitsForPromise ->
       atom.packages.activatePackage 'status-bar'
     waitsForPromise ->
@@ -144,6 +156,14 @@ describe 'file-icon-supplement', ->
         expect(atom.workspaceView.find '.fis-tree').toExist()
         expect(atom.workspaceView.find '.fis-tab').toExist()
         expect(atom.workspaceView.find '.fis-grammar').toExist()
+
+    describe 'file-icon-supplement:toggleFuzzyFinderClass', ->
+      it 'it can trigger a fuzzy-finder toggle', ->
+        atom.workspaceView.trigger 'fuzzy-finder:toggle-file-finder'
+        atom.workspaceView.trigger 'file-icon-supplement:toggleFuzzyFinderClass'
+        expect(atom.workspaceView.find '.fis-fuzzy').not.toExist()
+        atom.workspaceView.trigger 'file-icon-supplement:toggleFuzzyFinderClass'
+        expect(atom.workspaceView.find '.fis-fuzzy').toExist()
 
     describe 'file-icon-supplement:toggleAllClass', ->
       it 'it toggles all off on first trigger', ->
@@ -197,3 +217,11 @@ describe 'file-icon-supplement', ->
         atom.workspace.getActiveEditor().emit 'grammar-changed'
         expect(atom.workspaceView.find('.fis-grammar').attr 'title')
           .toBe 'CoffeeScript'
+
+  describe 'fuzzy-finder', ->
+    it 'it adds the fuzzy class when triggered', ->
+      expect(atom.workspaceView.find '.fuzzy-finder').not.toExist()
+      expect(atom.workspaceView.find '.fis-fuzzy').not.toExist()
+      atom.workspaceView.trigger 'fuzzy-finder:toggle-file-finder'
+      expect(atom.workspaceView.find '.fuzzy-finder').toExist()
+      expect(atom.workspaceView.find '.fis-fuzzy').toExist()

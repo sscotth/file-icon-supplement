@@ -8,5 +8,10 @@
     "atom": ">0.122.0"
   },
   "activationEvents": ["editor:display-updated"],
-  "main": "./lib/file-icon-supplement"
+  "main": "./lib/file-icon-supplement",
+  "dependencies": {
+    "wrench": "^1.5",
+    "fs-plus": "^2.3",
+    "temp": "^0.7"
+  }
 }

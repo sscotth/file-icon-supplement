@@ -63,6 +63,8 @@ class FileIconSupplementView extends View
         => @updateGrammarTitle()
     @subscribe atom.workspaceView, 'project-find:show',
       => @addFindAndReplaceEvent()
+    @subscribe atom.workspaceView, 'fuzzy-finder:toggle-file-finder',
+      => @loadFuzzyFinderSettings()
 
   serialize: ->
 

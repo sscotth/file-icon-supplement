@@ -15,7 +15,7 @@
     'File Icon Supplement':
       'Toggle Active Icons On/Off': 'file-icon-supplement:toggleAllClass'
       'Toggle Grammar Icons On/Off': 'file-icon-supplement:toggleGrammarClass'
-  '.list-group':
+  '.fuzzy-finder':
     'File Icon Supplement':
       'Toggle Active Icons On/Off': 'file-icon-supplement:toggleAllClass'
       'Toggle Fuzzy Finder Icons On/Off': 'file-icon-supplement:toggleFuzzyFinderClass'
