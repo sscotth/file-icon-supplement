@@ -104,8 +104,6 @@ describe 'file-icon-supplement', ->
 
     atom.workspaceView = new WorkspaceView
     waitsForPromise ->
-      atom.packages.activatePackage 'language-javascript'
-    waitsForPromise ->
       atom.packages.activatePackage 'tabs'
     waitsForPromise ->
       atom.packages.activatePackage 'tree-view'
@@ -188,35 +186,6 @@ describe 'file-icon-supplement', ->
         expect(atom.workspaceView.find '.fis-grammar').toExist()
         expect(Object.keys(atom.config.get 'file-icon-supplement').length)
           .toBe 5
-
-  describe 'grammar-status', ->
-    it 'it adds a grammar data attribute when opening a file', ->
-      expect(atom.workspaceView.find('.fis-grammar').attr 'data-grammar')
-        .toBe 'JavaScript'
-
-    it 'it changes grammar when opening a file of a different type', ->
-      waitsForPromise ->
-        atom.workspace.open 'example.txt'
-
-      runs ->
-        atom.workspaceView.statusBar.trigger 'active-buffer-changed'
-        expect(atom.workspaceView.find('.fis-grammar').attr 'data-grammar')
-          .toBe 'Plain Text'
-
-    it 'it changes grammar when the grammar changes', ->
-      waitsForPromise ->
-        atom.packages.activatePackage 'language-coffee-script'
-
-      runs ->
-        expect(atom.workspaceView.getActivePaneItem().getGrammar().name)
-          .toBe 'JavaScript'
-        coffeeGrammar = atom.syntax.grammarForScopeName 'source.coffee'
-        atom.workspace.getActiveEditor().setGrammar coffeeGrammar
-        expect(atom.workspaceView.getActivePaneItem().getGrammar().name)
-          .toBe 'CoffeeScript'
-        atom.workspace.getActiveEditor().emit 'grammar-changed'
-        expect(atom.workspaceView.find('.fis-grammar').attr 'data-grammar')
-          .toBe 'CoffeeScript'
 
   describe 'fuzzy-finder', ->
     it 'it adds the fuzzy class when triggered', ->
