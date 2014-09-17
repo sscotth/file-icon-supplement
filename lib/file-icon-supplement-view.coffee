@@ -61,6 +61,8 @@ class FileIconSupplementView extends View
     @subscribe atom.workspace.eachEditor (editor) =>
       @subscribe editor, 'grammar-changed',
         => @updateGrammarTitle()
+    @subscribe atom.workspaceView, 'project-find:show',
+        => @addFindAndReplaceEvent()
 
 
 
@@ -123,14 +125,29 @@ class FileIconSupplementView extends View
     @reloadStyleSheets()
 
   removeFindAndReplaceClass: ->
-    target = atom.workspaceView.find '.fis.fis-find'
-    target.removeClass 'fis fis-find'
+    atom.workspace.eachEditor ->
+      target = atom.workspaceView.find '.fis.fis-find'
+      target.removeClass 'fis fis-find'
 
   loadFindAndReplaceSettings: ->
     if atom.config.get 'file-icon-supplement.findAndReplaceIcons'
       @addFindAndReplaceClass()
     else
       @removeFindAndReplaceClass()
+      @removeFindAndReplaceEvent()
+
+  addFindAndReplaceEvent: ->
+    if atom.packages.loadedPackages['find-and-replace'] and
+    atom.config.get 'file-icon-supplement.findAndReplaceIcons'
+      @subscribe atom.packages.loadedPackages['find-and-replace'].
+        mainModule.resultsModel, 'finished-searching', =>
+          @addFindAndReplaceClass()
+
+  removeFindAndReplaceEvent: ->
+    if atom.packages.loadedPackages['find-and-replace']
+      @unsubscribe atom.packages.loadedPackages['find-and-replace'].
+        mainModule.resultsModel, 'finished-searching', =>
+          @addFindAndReplaceClass()
 
   addGrammarClass: ->
     target = atom.workspaceView.find '.status-bar-right > a:first-of-type'
