@@ -16,11 +16,13 @@ You may then need to restart the Atom editor.
 
 ## Features
 
-* Icons visible in tree-view, tabs, fuzzy-finder, and find-and-replace, status-bar, and grammar-selector
+* Icons visible in tree-view, tabs, fuzzy-finder, and find-and-replace, status-bar, grammar-status, and grammar-selector
+* Toggle for each of the above areas
 * Respects the "Show Icons" setting on tabs
 * TODO: Full color, single color, and no color icons
-* TODO: Optional overriding of the active theme's icons
+* TODO: Toggle between icon options where available
+* TODO: Test the find-and-replace class event
 
 ## Issues and Pull Requests :bug:
 
-Please report any problems or feature suggestions [here](https://github.com/sscotth/file-icon-supplement/issues). Pull requests are welcome.
+Some of the features of this package rely on recent additions by myself and others to atom and may not be fully tested. Please report any problems or feature suggestions [here](https://github.com/sscotth/file-icon-supplement/issues). Pull requests are welcome.
