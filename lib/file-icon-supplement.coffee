@@ -12,7 +12,7 @@ module.exports =
 
   activate: (state) ->
     @fileIconSupplementView =
-      new FileIconSupplementView(state.fileIconSupplementViewState)
+      new FileIconSupplementView state.fileIconSupplementViewState
     atom.packages.once "activated", =>
       @fileIconSupplementView.loadAllSettings()
 

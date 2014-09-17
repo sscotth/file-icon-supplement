@@ -62,9 +62,7 @@ class FileIconSupplementView extends View
       @subscribe editor, 'grammar-changed',
         => @updateGrammarTitle()
     @subscribe atom.workspaceView, 'project-find:show',
-        => @addFindAndReplaceEvent()
-
-
+      => @addFindAndReplaceEvent()
 
   serialize: ->
 

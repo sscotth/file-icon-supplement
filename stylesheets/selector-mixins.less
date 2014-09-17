@@ -6,7 +6,7 @@
   @period: ~'.';
   @text-font-size: inherit;
   @margin-right: 5px;
-};
+}
 
 .load-type-variables(@type) when (@type = file) {
   @regex: ~'^';
@@ -14,14 +14,14 @@
   @period: ~'';
   @text-font-size: inherit;
   @margin-right: 5px;
-};
+}
 
 .load-type-variables(@type) when (@type = grammar) {
   @attr: ~'title';
   @period: ~'';
   @text-font-size: 0;
   @margin-right: 0;
-};
+}
 
 .icon-generator(@type; @extensions; @icon; @font-family: @fis; @font-size: 16px){
   .load-type-variables(@type);

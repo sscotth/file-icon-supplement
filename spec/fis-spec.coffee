@@ -169,31 +169,31 @@ describe 'file-icon-supplement', ->
         expect(Object.keys(atom.config.get 'file-icon-supplement').length)
           .toBe 5
 
-    describe 'file-icon-supplement:grammar', ->
-      it 'it adds a title attribute when opening a file', ->
+  describe 'grammar-status', ->
+    it 'it adds a title attribute when opening a file', ->
+      expect(atom.workspaceView.find('.fis-grammar').attr 'title')
+        .toBe 'JavaScript'
+
+    it 'it changes title when opening a file of a different type', ->
+      waitsForPromise ->
+        atom.workspace.open 'example.txt'
+
+      runs ->
+        atom.workspaceView.statusBar.trigger 'active-buffer-changed'
         expect(atom.workspaceView.find('.fis-grammar').attr 'title')
+          .toBe 'Plain Text'
+
+    it 'it changes title when grammar changes', ->
+      waitsForPromise ->
+        atom.packages.activatePackage 'language-coffee-script'
+
+      runs ->
+        expect(atom.workspaceView.getActivePaneItem().getGrammar().name)
           .toBe 'JavaScript'
-
-      it 'it changes title when opening a file of a different type', ->
-        waitsForPromise ->
-          atom.workspace.open 'example.txt'
-
-        runs ->
-          atom.workspaceView.statusBar.trigger 'active-buffer-changed'
-          expect(atom.workspaceView.find('.fis-grammar').attr 'title')
-            .toBe 'Plain Text'
-
-      it 'it changes title when grammar changes', ->
-        waitsForPromise ->
-          atom.packages.activatePackage 'language-coffee-script'
-
-        runs ->
-          expect(atom.workspaceView.getActivePaneItem().getGrammar().name)
-            .toBe 'JavaScript'
-          coffeeGrammar = atom.syntax.grammarForScopeName 'source.coffee'
-          atom.workspace.getActiveEditor().setGrammar(coffeeGrammar)
-          expect(atom.workspaceView.getActivePaneItem().getGrammar().name)
-            .toBe 'CoffeeScript'
-          atom.workspace.getActiveEditor().emit 'grammar-changed'
-          expect(atom.workspaceView.find('.fis-grammar').attr 'title')
-            .toBe 'CoffeeScript'
+        coffeeGrammar = atom.syntax.grammarForScopeName 'source.coffee'
+        atom.workspace.getActiveEditor().setGrammar coffeeGrammar
+        expect(atom.workspaceView.getActivePaneItem().getGrammar().name)
+          .toBe 'CoffeeScript'
+        atom.workspace.getActiveEditor().emit 'grammar-changed'
+        expect(atom.workspaceView.find('.fis-grammar').attr 'title')
+          .toBe 'CoffeeScript'
