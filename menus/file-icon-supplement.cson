@@ -7,14 +7,14 @@
     'File Icon Supplement':
       'Toggle Active Icons On/Off': 'file-icon-supplement:toggleAllClass'
       'Toggle Tab-Bar Icons On/Off': 'file-icon-supplement:toggleTabClass'
-  '.status-bar':
+  'div[is="grammar-selector-status"]':
     'File Icon Supplement':
       'Toggle Active Icons On/Off': 'file-icon-supplement:toggleAllClass'
-      'Toggle Grammar Icons On/Off': 'file-icon-supplement:toggleGrammarClass'
+      'Toggle Grammar Status Icons On/Off': 'file-icon-supplement:toggleGrammarStatusClass'
   '.grammar-selector':
     'File Icon Supplement':
       'Toggle Active Icons On/Off': 'file-icon-supplement:toggleAllClass'
-      'Toggle Grammar Icons On/Off': 'file-icon-supplement:toggleGrammarClass'
+      'Toggle Grammar Selector Icons On/Off': 'file-icon-supplement:toggleGrammarSelectorClass'
   '.fuzzy-finder':
     'File Icon Supplement':
       'Toggle Active Icons On/Off': 'file-icon-supplement:toggleAllClass'
