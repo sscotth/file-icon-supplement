@@ -31,12 +31,12 @@ class FileIconSupplementView extends View
       => @removeFindAndReplaceClass()
     atom.workspaceView.command 'file-icon-supplement:toggleFindAndReplaceClass',
       => @toggleClass 'findAndReplaceIcons'
-    atom.workspaceView.command 'file-icon-supplement:addGrammarClass',
-      => @addGrammarClass()
-    atom.workspaceView.command 'file-icon-supplement:removeGrammarClass',
-      => @removeGrammarClass()
-    atom.workspaceView.command 'file-icon-supplement:toggleGrammarClass',
-      => @toggleClass 'grammarIcons'
+    atom.workspaceView.command 'file-icon-supplement:addGrammarStatusClass',
+      => @addGrammarStatusClass()
+    atom.workspaceView.command 'file-icon-supplement:removeGrammarStatusClass',
+      => @removeGrammarStatusClass()
+    atom.workspaceView.command 'file-icon-supplement:toggleGrammarStatusClass',
+      => @toggleClass 'grammarStatusIcons'
     atom.workspaceView.command 'file-icon-supplement:removeAllClass',
       => @removeAllClass()
     atom.workspaceView.command 'file-icon-supplement:toggleAllClass',
@@ -50,8 +50,8 @@ class FileIconSupplementView extends View
       => @loadFuzzyFinderSettings()
     @subscribe atom.config.observe 'file-icon-supplement.findAndReplaceIcons',
       => @loadFindAndReplaceSettings()
-    @subscribe atom.config.observe 'file-icon-supplement.grammarIcons',
-      => @loadGrammarSettings()
+    @subscribe atom.config.observe 'file-icon-supplement.grammarStatusIcons',
+      => @loadGrammarStatusSettings()
 
     @subscribe atom.config.observe 'tabs.showIcons',
       => @reloadStyleSheets()
@@ -144,31 +144,46 @@ class FileIconSupplementView extends View
         mainModule.resultsModel, 'finished-searching', =>
           @addFindAndReplaceClass()
 
-  addGrammarClass: ->
+  addGrammarStatusClass: ->
     target = atom.workspaceView.find '.grammar-status a'
-    target.addClass 'fis fis-grammar'
+    target.addClass 'fis fis-grammar-status'
     @reloadStyleSheets()
 
-  removeGrammarClass: ->
-    target = atom.workspaceView.find '.fis.fis-grammar'
-    target.removeClass 'fis fis-grammar'
+  removeGrammarStatusClass: ->
+    target = atom.workspaceView.find '.fis.fis-grammar-status'
+    target.removeClass 'fis fis-grammar-status'
 
-  loadGrammarSettings: ->
-    if atom.config.get 'file-icon-supplement.grammarIcons'
-      @addGrammarClass()
+  loadGrammarStatusSettings: ->
+    if atom.config.get 'file-icon-supplement.grammarStatusIcons'
+      @addGrammarStatusClass()
     else
-      @removeGrammarClass()
+      @removeGrammarStatusClass()
+
+  addGrammarSelectorClass: ->
+    target = atom.workspaceView.find '.grammar-selector li'
+    target.addClass 'fis fis-grammar-selector'
+    @reloadStyleSheets()
+
+  removeGrammarSelectorClass: ->
+    target = atom.workspaceView.find '.fis.fis-grammar-selector'
+    target.removeClass 'fis fis-grammar-selector'
+
+  loadGrammarSelectorSettings: ->
+    if atom.config.get 'file-icon-supplement.grammarSelectorIcons'
+      @addGrammarSelectorClass()
+    else
+      @removeGrammarSelectorClass()
 
   removeAllClass: ->
     target = atom.workspaceView.find '.fis'
-    target.removeClass 'fis fis-tree fis-tab fis-fuzzy fis-find fis-grammar'
+    target.removeClass 'fis fis-tree fis-tab fis-fuzzy fis-find fis-grammar-status'
 
   loadAllSettings: ->
     @loadTabSettings()
     @loadTreeViewSettings()
     @loadFuzzyFinderSettings()
     @loadFindAndReplaceSettings()
-    @loadGrammarSettings()
+    @loadGrammarStatusSettings()
 
   toggleClass: (area) ->
     if area
@@ -186,7 +201,7 @@ class FileIconSupplementView extends View
     atom.config.get('file-icon-supplement.treeViewIcons') or
     atom.config.get('file-icon-supplement.fuzzyFinderIcons') or
     atom.config.get('file-icon-supplement.findAndReplaceIcons') or
-    atom.config.get('file-icon-supplement.grammarIcons')
+    atom.config.get('file-icon-supplement.grammarStatusIcons') or
 
   toggleClassCache: {}
 
@@ -197,7 +212,7 @@ class FileIconSupplementView extends View
       fuzzyFinderIcons: atom.config.get 'file-icon-supplement.fuzzyFinderIcons'
       findAndReplaceIcons: atom.config.get(
         'file-icon-supplement.findAndReplaceIcons')
-      grammarIcons: atom.config.get 'file-icon-supplement.grammarIcons'
+      grammarStatusIcons: atom.config.get 'file-icon-supplement.grammarStatusIcons'
 
   recoverToggleClassCache: ->
     for key, value of @toggleClassCache
@@ -208,7 +223,7 @@ class FileIconSupplementView extends View
     atom.config.set 'file-icon-supplement.treeViewIcons', false
     atom.config.set 'file-icon-supplement.fuzzyFinderIcons', false
     atom.config.set 'file-icon-supplement.findAndReplaceIcons', false
-    atom.config.set 'file-icon-supplement.grammarIcons', false
+    atom.config.set 'file-icon-supplement.grammarStatusIcons', false
 
   reloadStyleSheets: ->
     atom.themes.reloadBaseStylesheets()

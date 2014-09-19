@@ -6,7 +6,7 @@ module.exports =
     tabIcons: true
     fuzzyFinderIcons: true
     findAndReplaceIcons: true
-    grammarIcons: true
+    grammarStatusIcons: true
 
   fileIconSupplementView: null
 

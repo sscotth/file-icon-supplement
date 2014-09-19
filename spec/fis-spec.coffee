@@ -58,12 +58,12 @@ describe 'file-icon-supplement base-ui', ->
     runs ->
       expect(atom.workspaceView.find '.fis-tab').toExist()
       expect(atom.workspaceView.find '.fis-tree').toExist()
-      expect(atom.workspaceView.find '.fis-grammar').toExist()
+      expect(atom.workspaceView.find '.fis-grammar-status').toExist()
 
   it 'it adds only the classes that are specificed in the config on open', ->
     atom.config.set 'file-icon-supplement.treeViewIcons', false
     atom.config.set 'file-icon-supplement.tabIcons', false
-    atom.config.set 'file-icon-supplement.grammarIcons', false
+    atom.config.set 'file-icon-supplement.grammarStatusIcons', false
 
     waitsForPromise ->
       atom.packages.activatePackage 'file-icon-supplement'
@@ -73,7 +73,7 @@ describe 'file-icon-supplement base-ui', ->
     runs ->
       expect(atom.workspaceView.find '.fis-tree').not.toExist()
       expect(atom.workspaceView.find '.fis-tab').not.toExist()
-      expect(atom.workspaceView.find '.fis-grammar').not.toExist()
+      expect(atom.workspaceView.find '.fis-grammar-status').not.toExist()
 
   it 'it responds to changes in the config after open', ->
     waitsForPromise ->
@@ -84,15 +84,15 @@ describe 'file-icon-supplement base-ui', ->
     runs ->
       expect(atom.workspaceView.find '.fis-tree').toExist()
       expect(atom.workspaceView.find '.fis-tab').toExist()
-      expect(atom.workspaceView.find '.fis-grammar').toExist()
+      expect(atom.workspaceView.find '.fis-grammar-status').toExist()
 
       atom.config.set 'file-icon-supplement.treeViewIcons', false
       atom.config.set 'file-icon-supplement.tabIcons', false
-      atom.config.set 'file-icon-supplement.grammarIcons', false
+      atom.config.set 'file-icon-supplement.grammarStatusIcons', false
 
       expect(atom.workspaceView.find '.fis-tree').not.toExist()
       expect(atom.workspaceView.find '.fis-tab').not.toExist()
-      expect(atom.workspaceView.find '.fis-grammar').not.toExist()
+      expect(atom.workspaceView.find '.fis-grammar-status').not.toExist()
 
 describe 'file-icon-supplement', ->
   beforeEach ->
@@ -127,33 +127,33 @@ describe 'file-icon-supplement', ->
         atom.workspaceView.trigger 'file-icon-supplement:toggleTreeViewClass'
         expect(atom.workspaceView.find '.fis-tree').not.toExist()
         expect(atom.workspaceView.find '.fis-tab').toExist()
-        expect(atom.workspaceView.find '.fis-grammar').toExist()
+        expect(atom.workspaceView.find '.fis-grammar-status').toExist()
         atom.workspaceView.trigger 'file-icon-supplement:toggleTreeViewClass'
         expect(atom.workspaceView.find '.fis-tree').toExist()
         expect(atom.workspaceView.find '.fis-tab').toExist()
-        expect(atom.workspaceView.find '.fis-grammar').toExist()
+        expect(atom.workspaceView.find '.fis-grammar-status').toExist()
 
     describe 'file-icon-supplement:toggleTabClass', ->
       it 'it can trigger a tab toggle', ->
         atom.workspaceView.trigger 'file-icon-supplement:toggleTabClass'
         expect(atom.workspaceView.find '.fis-tree').toExist()
         expect(atom.workspaceView.find '.fis-tab').not.toExist()
-        expect(atom.workspaceView.find '.fis-grammar').toExist()
+        expect(atom.workspaceView.find '.fis-grammar-status').toExist()
         atom.workspaceView.trigger 'file-icon-supplement:toggleTabClass'
         expect(atom.workspaceView.find '.fis-tree').toExist()
         expect(atom.workspaceView.find '.fis-tab').toExist()
-        expect(atom.workspaceView.find '.fis-grammar').toExist()
+        expect(atom.workspaceView.find '.fis-grammar-status').toExist()
 
-    describe 'file-icon-supplement:toggleGrammarClass', ->
-      it 'it can trigger a grammar toggle', ->
-        atom.workspaceView.trigger 'file-icon-supplement:toggleGrammarClass'
+    describe 'file-icon-supplement:toggleGrammarStatusClass', ->
+      it 'it can trigger a grammar status toggle', ->
+        atom.workspaceView.trigger 'file-icon-supplement:toggleGrammarStatusClass'
         expect(atom.workspaceView.find '.fis-tree').toExist()
         expect(atom.workspaceView.find '.fis-tab').toExist()
-        expect(atom.workspaceView.find '.fis-grammar').not.toExist()
-        atom.workspaceView.trigger 'file-icon-supplement:toggleGrammarClass'
+        expect(atom.workspaceView.find '.fis-grammar-status').not.toExist()
+        atom.workspaceView.trigger 'file-icon-supplement:toggleGrammarStatusClass'
         expect(atom.workspaceView.find '.fis-tree').toExist()
         expect(atom.workspaceView.find '.fis-tab').toExist()
-        expect(atom.workspaceView.find '.fis-grammar').toExist()
+        expect(atom.workspaceView.find '.fis-grammar-status').toExist()
 
     describe 'file-icon-supplement:toggleFuzzyFinderClass', ->
       it 'it can trigger a fuzzy-finder toggle', ->
@@ -167,15 +167,15 @@ describe 'file-icon-supplement', ->
       it 'it toggles all off on first trigger', ->
         expect(atom.workspaceView.find '.fis-tree').toExist()
         expect(atom.workspaceView.find '.fis-tab').toExist()
-        expect(atom.workspaceView.find '.fis-grammar').toExist()
+        expect(atom.workspaceView.find '.fis-grammar-status').toExist()
         atom.workspaceView.trigger 'file-icon-supplement:toggleAllClass'
         expect(atom.workspaceView.find '.fis-tree').not.toExist()
         expect(atom.workspaceView.find '.fis-tab').not.toExist()
-        expect(atom.workspaceView.find '.fis-grammar').not.toExist()
+        expect(atom.workspaceView.find '.fis-grammar-status').not.toExist()
         atom.workspaceView.trigger 'file-icon-supplement:toggleAllClass'
         expect(atom.workspaceView.find '.fis-tree').toExist()
         expect(atom.workspaceView.find '.fis-tab').toExist()
-        expect(atom.workspaceView.find '.fis-grammar').toExist()
+        expect(atom.workspaceView.find '.fis-grammar-status').toExist()
 
       it 'it only enables previously enabled areas on second trigger', ->
         atom.workspaceView.trigger 'file-icon-supplement:toggleTabClass'
@@ -183,7 +183,7 @@ describe 'file-icon-supplement', ->
         atom.workspaceView.trigger 'file-icon-supplement:toggleAllClass'
         expect(atom.workspaceView.find '.fis-tree').toExist()
         expect(atom.workspaceView.find '.fis-tab').not.toExist()
-        expect(atom.workspaceView.find '.fis-grammar').toExist()
+        expect(atom.workspaceView.find '.fis-grammar-status').toExist()
         expect(Object.keys(atom.config.get 'file-icon-supplement').length)
           .toBe 5
 
