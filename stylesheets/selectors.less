@@ -4,7 +4,8 @@
 @tabs: ~'.fis-tab:not(.hide-icon)';
 @fuzzy-finder: ~'.fis-fuzzy';
 @find-and-replace: ~'.fis-find';
-@grammar-status: ~'.fis-grammar';
+@grammar-status: ~'.fis-grammar-status';
+@grammar-selector: ~'.fis-grammar-selector';
 
 @{tree-view}, @{tabs}, @{fuzzy-finder}, @{find-and-replace}{
   .icon-generator(extension; md, mdown; @markdown; @octicons);
@@ -16,4 +17,8 @@
 
 @{grammar-status} {
   .icon-generator(grammarStatus; CoffeeScript; @coffeescript-text; @font-size: 12px)
+}
+
+@{grammar-selector} {
+  .icon-generator(grammarSelector; CoffeeScript; @coffeescript-text; @font-size: 14px) !important;
 }

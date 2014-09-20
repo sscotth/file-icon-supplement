@@ -185,7 +185,15 @@ describe 'file-icon-supplement', ->
         expect(atom.workspaceView.find '.fis-tab').not.toExist()
         expect(atom.workspaceView.find '.fis-grammar-status').toExist()
         expect(Object.keys(atom.config.get 'file-icon-supplement').length)
-          .toBe 5
+          .toBe 6
+
+  describe 'grammar-selector', ->
+    it 'it adds the grammar selector class when triggered', ->
+      expect(atom.workspaceView.find '.grammar-selector').not.toExist()
+      expect(atom.workspaceView.find '.fis-grammar-selector').not.toExist()
+      atom.workspaceView.trigger 'grammar-selector:show'
+      expect(atom.workspaceView.find '.grammar-selector').toExist()
+      expect(atom.workspaceView.find '.fis-grammar-selector').toExist()
 
   describe 'fuzzy-finder', ->
     it 'it adds the fuzzy class when triggered', ->
