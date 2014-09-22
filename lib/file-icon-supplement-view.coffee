@@ -61,6 +61,10 @@ class FileIconSupplementView extends View
 
     @subscribe atom.config.observe 'tabs.showIcons',
       => @reloadStyleSheets()
+    @subscribe atom.config.observe 'tree-view.hideVcsIgnoredFiles',
+      => @addTreeViewClass()
+    @subscribe atom.config.observe 'tree-view.hideIgnoredNames',
+      => @addTreeViewClass()
 
     @subscribe atom.workspaceView, 'project-find:show',
       => @addFindAndReplaceEvent()
@@ -68,6 +72,10 @@ class FileIconSupplementView extends View
       => @loadFuzzyFinderSettings()
     @subscribe atom.workspaceView, 'grammar-selector:show',
       => @loadGrammarSelectorSettings()
+
+    @subscribe atom.packages.loadedPackages['tree-view'].
+      mainModule.treeView, 'tree-view:directory-modified', =>
+        @addTreeViewClass()
 
   serialize: ->
 
