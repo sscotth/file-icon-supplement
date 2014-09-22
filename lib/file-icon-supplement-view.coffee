@@ -60,7 +60,7 @@ class FileIconSupplementView extends View
       => @loadGrammarStatusSettings()
 
     @subscribe atom.config.observe 'tabs.showIcons',
-      => @reloadStyleSheets()
+      => @addTabClass()
     @subscribe atom.config.observe 'tree-view.hideVcsIgnoredFiles',
       => @addTreeViewClass()
     @subscribe atom.config.observe 'tree-view.hideIgnoredNames',
