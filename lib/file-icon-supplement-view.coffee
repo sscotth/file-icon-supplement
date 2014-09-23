@@ -72,6 +72,8 @@ class FileIconSupplementView extends View
       => @loadFuzzyFinderSettings()
     @subscribe atom.workspaceView, 'grammar-selector:show',
       => @loadGrammarSelectorSettings()
+    @subscribe atom.workspace.paneContainer.emitter, 'did-change-active-pane-item',
+      => @addTabClass()
 
     @subscribe atom.packages.loadedPackages['tree-view'].
       mainModule.treeView, 'tree-view:directory-modified', =>
