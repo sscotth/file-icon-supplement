@@ -1,13 +1,15 @@
 {
   "name": "file-icon-supplement",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "Additional file extension icons for all themes",
   "repository": "https://github.com/sscotth/file-icon-supplement",
   "license": "MIT",
   "engines": {
     "atom": ">=0.130.0"
   },
-  "activationEvents": ["editor:display-updated"],
+  "activationEvents": [
+    "editor:display-updated"
+  ],
   "main": "./lib/file-icon-supplement",
   "devDependencies": {
     "wrench": "^1.5",
