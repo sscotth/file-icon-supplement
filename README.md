@@ -2,6 +2,8 @@
 
 Additional file icons for the [Atom Editor](http://atom.io). Optimized for atom-dark-ui/atom-light-ui based themes. Compatible with Unity, Seti, and others.
 
+![Screenshot](https://raw.githubusercontent.com/sscotth/file-icon-supplement/master/resources/screenshot.png "Screenshot")
+
 ## Installation
 
 In Atom, open Preferences > Packages, search for `file-icon-supplement` package. Once found, click the `Install` button to install this package.
