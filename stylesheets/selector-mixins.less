@@ -9,7 +9,7 @@
 }
 
 .load-type-variables(@type) when (@type = file) {
-  @regex: ~'^';
+  @regex: ~'';
   @attr: ~'data-name@{regex}';
   @period: ~'';
   @text-font-size: inherit;
@@ -27,13 +27,12 @@
   @attr: ~'data-grammar';
   @period: ~'';
   @text-font-size: inherit;
-  @margin: 0 10px 0 20px;
+  @margin: 0 0 0 20px;
 }
 
 .grammar-icon-after(@type; @font-family; @font-size) when (@type = grammarSelector) {
   float: right;
-  margin: @margin;
-  width: auto;
+  padding-right: 10px;
   .icon-font(@icon; @font-family; @font-size);
 }
 
