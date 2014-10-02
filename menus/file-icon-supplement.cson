@@ -1,26 +1,61 @@
 'context-menu':
-  '.tree-view':
-    'File Icon Supplement':
-      'Toggle Active Icons On/Off': 'file-icon-supplement:toggleAllClass'
-      'Toggle Tree-View Icons On/Off': 'file-icon-supplement:toggleTreeViewClass'
-  '.tab-bar':
-    'File Icon Supplement':
-      'Toggle Active Icons On/Off': 'file-icon-supplement:toggleAllClass'
-      'Toggle Tab-Bar Icons On/Off': 'file-icon-supplement:toggleTabClass'
-  'div[is="grammar-selector-status"]':
-    'File Icon Supplement':
-      'Toggle Active Icons On/Off': 'file-icon-supplement:toggleAllClass'
-      'Toggle Grammar Status Icons On/Off': 'file-icon-supplement:toggleGrammarStatusClass'
-  '.grammar-selector':
-    'File Icon Supplement':
-      'Toggle Active Icons On/Off': 'file-icon-supplement:toggleAllClass'
-      'Toggle Grammar Selector Icons On/Off': 'file-icon-supplement:toggleGrammarSelectorClass'
-  '.fuzzy-finder':
-    'File Icon Supplement':
-      'Toggle Active Icons On/Off': 'file-icon-supplement:toggleAllClass'
-      'Toggle Fuzzy Finder Icons On/Off': 'file-icon-supplement:toggleFuzzyFinderClass'
-  '.preview-pane':
-    'File Icon Supplement':
-      'Toggle Active Icons On/Off': 'file-icon-supplement:toggleAllClass'
-      'Toggle Find And Replace Icons On/Off': 'file-icon-supplement:toggleFindAndReplaceClass'
-
+  '.tree-view': [
+    label: 'File Icon Supplement'
+    submenu: [
+        label: 'Toggle Active Icons On/Off'
+        command: 'file-icon-supplement:toggleAllClass'
+      ,
+        label: 'Toggle Tree-View Icons On/Off'
+        command: 'file-icon-supplement:toggleTreeViewClass'
+    ]
+  ]
+  '.tab-bar': [
+    label: 'File Icon Supplement'
+    submenu: [
+        label: 'Toggle Active Icons On/Off'
+        command: 'file-icon-supplement:toggleAllClass'
+      ,
+        label: 'Toggle Tab-Bar Icons On/Off'
+        command: 'file-icon-supplement:toggleTabClass'
+    ]
+  ]
+  'div[is="grammar-selector-status"]': [
+    label: 'File Icon Supplement'
+    submenu: [
+        label: 'Toggle Active Icons On/Off'
+        command: 'file-icon-supplement:toggleAllClass'
+      ,
+        label: 'Toggle Grammar-Status Icons On/Off'
+        command: 'file-icon-supplement:toggleGrammarStatusClass'
+    ]
+  ]
+  '.grammar-selector': [
+    label: 'File Icon Supplement'
+    submenu: [
+        label: 'Toggle Active Icons On/Off'
+        command: 'file-icon-supplement:toggleAllClass'
+      ,
+        label: 'Toggle Grammar-Selector Icons On/Off'
+        command: 'file-icon-supplement:toggleGrammarSelectorClass'
+    ]
+  ]
+  '.fuzzy-finder': [
+    label: 'File Icon Supplement'
+    submenu: [
+        label: 'Toggle Active Icons On/Off'
+        command: 'file-icon-supplement:toggleAllClass'
+      ,
+        label: 'Toggle Fuzzy-Finder Icons On/Off'
+        command: 'file-icon-supplement:toggleFuzzyFinderClass'
+    ]
+  ]
+  '.preview-pane': [
+    label: 'File Icon Supplement'
+    submenu: [
+        label: 'Toggle Active Icons On/Off'
+        command: 'file-icon-supplement:toggleAllClass'
+      ,
+        label: 'Toggle Find-And-Replace Icons On/Off'
+        command: 'file-icon-supplement:toggleFindAndReplaceClass'
+    ]
+  ]
