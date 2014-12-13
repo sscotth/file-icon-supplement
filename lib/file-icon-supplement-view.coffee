@@ -155,13 +155,13 @@ class FileIconSupplementView extends View
     if atom.packages.loadedPackages['find-and-replace'] and
     atom.config.get 'file-icon-supplement.findAndReplaceIcons'
       @subscribe atom.packages.loadedPackages['find-and-replace'].
-        mainModule.resultsModel, 'finished-searching', =>
+        mainModule.resultsModel.emitter, 'did-finish-searching', =>
           @addFindAndReplaceClass()
 
   removeFindAndReplaceEvent: ->
     if atom.packages.loadedPackages['find-and-replace']
       @unsubscribe atom.packages.loadedPackages['find-and-replace'].
-        mainModule.resultsModel, 'finished-searching', =>
+        mainModule.resultsModel.emitter, 'did-finish-searching', =>
           @addFindAndReplaceClass()
 
   addGrammarStatusClass: ->
