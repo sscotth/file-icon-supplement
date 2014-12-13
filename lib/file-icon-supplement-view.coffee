@@ -75,9 +75,11 @@ class FileIconSupplementView extends View
     @subscribe atom.workspace.paneContainer.emitter, 'did-change-active-pane-item',
       => @addTabClass()
 
-    @subscribe atom.packages.loadedPackages['tree-view'].
-      mainModule.treeView, 'tree-view:directory-modified', =>
-        @addTreeViewClass()
+    treeView = atom.packages.loadedPackages['tree-view'] or
+      atom.packages.loadedPackages['sublime-tabs']
+
+    @subscribe treeView.mainModule.treeView, 'tree-view:directory-modified',
+      => @addTreeViewClass()
 
   serialize: ->
 
