@@ -5,7 +5,7 @@
   "repository": "https://github.com/sscotth/file-icon-supplement",
   "license": "MIT",
   "engines": {
-    "atom": ">=0.130.0"
+    "atom": "*"
   },
   "activationEvents": [
     "editor:display-updated"
