@@ -15,5 +15,8 @@
     "wrench": "^1.5",
     "fs-plus": "^2.3",
     "temp": "^0.7"
+  },
+  "dependencies": {
+    "pathwatcher": "^4.1.0"
   }
 }
