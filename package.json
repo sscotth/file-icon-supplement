@@ -17,6 +17,7 @@
     "temp": "^0.7"
   },
   "dependencies": {
+    "atom-space-pen-views": "^2.0.4",
     "pathwatcher": "^4.1.0"
   }
 }

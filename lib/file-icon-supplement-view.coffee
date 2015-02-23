@@ -1,4 +1,5 @@
-{View, CompositeDisposable} = require 'atom'
+{CompositeDisposable} = require 'atom'
+{View} = require 'atom-space-pen-views'
 PathWatcher = require 'pathwatcher'
 
 module.exports =
