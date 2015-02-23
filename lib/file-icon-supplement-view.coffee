@@ -1,5 +1,5 @@
 {CompositeDisposable} = require 'atom'
-{View} = require 'atom-space-pen-views'
+{$, View} = require 'atom-space-pen-views'
 PathWatcher = require 'pathwatcher'
 
 module.exports =
@@ -63,13 +63,11 @@ class FileIconSupplementView extends View
   destroy: -> @detach()
 
   addTabClass: ->
-    target = atom.workspaceView.find 'ul.tab-bar li.tab .title:not(.hide-icon)'
-    target.addClass 'fis fis-tab'
+    $('ul.tab-bar li.tab .title:not(.hide-icon)').addClass 'fis fis-tab'
     @reloadStyleSheets()
 
   removeTabClass: ->
-    target = atom.workspaceView.find '.fis.fis-tab'
-    target.removeClass 'fis fis-tab'
+    $('.fis.fis-tab').removeClass 'fis fis-tab'
 
   loadTabSettings: ->
     if atom.config.get 'file-icon-supplement.tabIcons'
@@ -78,13 +76,11 @@ class FileIconSupplementView extends View
       @removeTabClass()
 
   addTreeViewClass: ->
-    target = atom.workspaceView.find 'ol.tree-view span.name.icon'
-    target.addClass 'fis fis-tree'
+    $('ol.tree-view span.name.icon').addClass 'fis fis-tree'
     @reloadStyleSheets()
 
   removeTreeViewClass: ->
-    target = atom.workspaceView.find '.fis.fis-tree'
-    target.removeClass 'fis fis-tree'
+    $('.fis.fis-tree').removeClass 'fis fis-tree'
 
   loadTreeViewSettings: ->
     if atom.config.get 'file-icon-supplement.treeViewIcons'
@@ -93,13 +89,11 @@ class FileIconSupplementView extends View
       @removeTreeViewClass()
 
   addFuzzyFinderClass: ->
-    target = atom.workspaceView.find '.fuzzy-finder .file.icon'
-    target.addClass 'fis fis-fuzzy'
+    $('.fuzzy-finder .file.icon').addClass 'fis fis-fuzzy'
     @reloadStyleSheets()
 
   removeFuzzyFinderClass: ->
-    target = atom.workspaceView.find '.fis.fis-fuzzy'
-    target.removeClass 'fis fis-fuzzy'
+    $('.fis.fis-fuzzy').removeClass 'fis fis-fuzzy'
 
   toggleFuzzyFinderClass: ->
     current = atom.config.get 'file-icon-supplement.FuzzyFinderIcons'
@@ -112,14 +106,12 @@ class FileIconSupplementView extends View
       @removeFuzzyFinderClass()
 
   addFindAndReplaceClass: ->
-    target = atom.workspaceView.find '.results-view span.icon'
-    target.addClass 'fis fis-find'
+    $('.results-view span.icon').addClass 'fis fis-find'
     @reloadStyleSheets()
 
   removeFindAndReplaceClass: ->
     atom.workspace.eachEditor ->
-      target = atom.workspaceView.find '.fis.fis-find'
-      target.removeClass 'fis fis-find'
+      $('.fis.fis-find').removeClass 'fis fis-find'
 
   loadFindAndReplaceSettings: ->
     if atom.config.get 'file-icon-supplement.findAndReplaceIcons'
@@ -143,13 +135,11 @@ class FileIconSupplementView extends View
     subscriptions.findAndReplace.dispose()
 
   addGrammarStatusClass: ->
-    target = atom.workspaceView.find '.grammar-status a'
-    target.addClass 'fis fis-grammar-status'
+    $('.grammar-status a').addClass 'fis fis-grammar-status'
     @reloadStyleSheets()
 
   removeGrammarStatusClass: ->
-    target = atom.workspaceView.find '.fis.fis-grammar-status'
-    target.removeClass 'fis fis-grammar-status'
+    $('.fis.fis-grammar-status').removeClass 'fis fis-grammar-status'
 
   loadGrammarStatusSettings: ->
     if atom.config.get 'file-icon-supplement.grammarStatusIcons'
@@ -158,13 +148,11 @@ class FileIconSupplementView extends View
       @removeGrammarStatusClass()
 
   addGrammarSelectorClass: ->
-    target = atom.workspaceView.find '.grammar-selector li'
-    target.addClass 'fis fis-grammar-selector'
+    $('.grammar-selector li').addClass 'fis fis-grammar-selector'
     @reloadStyleSheets()
 
   removeGrammarSelectorClass: ->
-    target = atom.workspaceView.find '.fis.fis-grammar-selector'
-    target.removeClass 'fis fis-grammar-selector'
+    $('.fis.fis-grammar-selector').removeClass 'fis fis-grammar-selector'
 
   loadGrammarSelectorSettings: ->
     if atom.config.get 'file-icon-supplement.grammarSelectorIcons'
@@ -173,8 +161,7 @@ class FileIconSupplementView extends View
       @removeGrammarSelectorClass()
 
   removeAllClass: ->
-    target = atom.workspaceView.find '.fis'
-    target.removeClass 'fis fis-tree fis-tab fis-fuzzy fis-find fis-grammar-status fis-grammar-selector'
+    $('.fis').removeClass 'fis fis-tree fis-tab fis-fuzzy fis-find fis-grammar-status fis-grammar-selector'
 
   loadAllSettings: ->
     @loadTabSettings()
