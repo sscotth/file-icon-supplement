@@ -37,7 +37,7 @@ class FileIconSupplementView extends View
       'file-icon-supplement:removeAllClass': => @removeAllClass()
       'file-icon-supplement:toggleAllClass': => @toggleClass()
 
-    @subscriptions.add atom.config.observe,
+    @subscriptions.add atom.config.onDidChange,
       'file-icon-supplement.tabIcons': => @loadTabSettings()
       'file-icon-supplement.treeViewIcons': => @loadTreeViewSettings()
       'file-icon-supplement.fuzzyFinderIcons': => @loadFuzzyFinderSettings()
@@ -47,6 +47,9 @@ class FileIconSupplementView extends View
       'tabs.showIcons': => @loadTabSettings()
       'tree-view.hideVcsIgnoredFiles': => @loadTreeViewSettings()
       'tree-view.hideIgnoredNames': => @loadTreeViewSettings()
+
+    @subscriptions.add atom.config.onDidChange, ({newValue, oldValue, keyPath}) ->
+      console.log 'x'
 
     @subscriptions.add atom.commands.add 'atom-workspace',
       'project-find:show': => @addFindAndReplaceEvent()
@@ -76,6 +79,7 @@ class FileIconSupplementView extends View
       @removeTabClass()
 
   addTreeViewClass: ->
+    console.log 'yo dawg'
     $('ol.tree-view span.name.icon').addClass 'fis fis-tree'
     @reloadStyleSheets()
 
@@ -83,6 +87,7 @@ class FileIconSupplementView extends View
     $('.fis.fis-tree').removeClass 'fis fis-tree'
 
   loadTreeViewSettings: ->
+    console.log('treeview')
     if atom.config.get 'file-icon-supplement.treeViewIcons'
       @addTreeViewClass()
     else
