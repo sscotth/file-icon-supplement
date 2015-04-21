@@ -18,6 +18,6 @@
   },
   "dependencies": {
     "atom-space-pen-views": "^2.0.4",
-    "pathwatcher": "^4.1.0"
+    "event-kit": "^1.1.0"
   }
 }

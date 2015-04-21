@@ -1,6 +1,6 @@
-{CompositeDisposable} = require 'atom'
+{Directory} = require 'atom'
+{CompositeDisposable} = require 'event-kit'
 {$, View} = require 'atom-space-pen-views'
-PathWatcher = require 'pathwatcher'
 
 module.exports =
 class FileIconSupplementView extends View
@@ -56,9 +56,9 @@ class FileIconSupplementView extends View
     @subscriptions.add atom.workspace.onDidChangeActivePaneItem,
       => @addTabClass()
 
-    for projectPath in atom.project.getPaths()
-      PathWatcher.watch projectPath, (eventType) =>
-        if eventType == 'change' then @addTreeViewClass()
+    atom.project.getPaths().forEach (projectPath) =>
+      path = new Directory(projectPath)
+      path.onDidChange @addTreeViewClass
 
   destroy: -> @detach()
 
