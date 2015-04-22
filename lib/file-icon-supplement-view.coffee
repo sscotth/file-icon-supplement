@@ -13,7 +13,10 @@ class FileIconSupplementView extends View
 
     process.nextTick =>
       @loadAllSettings()
-      loadAllSettings = _.debounce(@loadAllSettings, 100)
+      loadAllSettings = _.debounce(
+        () => @loadAllSettings()
+        100
+      )
       @subscriptions.add atom.styles.onDidAddStyleElement(loadAllSettings)
       @subscriptions.add atom.styles.onDidRemoveStyleElement(loadAllSettings)
       @subscriptions.add atom.styles.onDidUpdateStyleElement(loadAllSettings)
