@@ -1,5 +1,4 @@
-{Directory} = require 'atom'
-{CompositeDisposable} = require 'event-kit'
+{CompositeDisposable, Directory} = require 'atom'
 {$, View} = require 'atom-space-pen-views'
 
 module.exports =
@@ -75,7 +74,7 @@ class FileIconSupplementView extends View
     else
       @removeTabClass()
 
-  addTreeViewClass: ->
+  addTreeViewClass: =>
     $('ol.tree-view span.name.icon').addClass 'fis fis-tree'
     @reloadStyleSheets()
 
