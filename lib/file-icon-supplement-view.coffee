@@ -44,8 +44,12 @@ class FileIconSupplementView extends View
       'file-icon-supplement.grammarStatusIcons': => @loadGrammarStatusSettings()
 
       'tabs.showIcons': => @loadTabSettings()
+
       'tree-view.hideVcsIgnoredFiles': => @loadTreeViewSettings()
       'tree-view.hideIgnoredNames': => @loadTreeViewSettings()
+      'tree-view.expand-directory': => @loadTreeViewSettings()
+      'tree-view:recursive-expand-directory': => @loadTreeViewSettings()
+
 
     @subscriptions.add atom.commands.add 'atom-workspace',
       'project-find:show': => @addFindAndReplaceEvent()
@@ -58,6 +62,10 @@ class FileIconSupplementView extends View
     atom.project.getPaths().forEach (projectPath) =>
       path = new Directory(projectPath)
       path.onDidChange => @addTreeViewClass()
+
+    $('.tree-view-resizer').on 'click', '.directory.entry', (e) =>
+      e.stopPropagation()
+      @loadTreeViewSettings()
 
   destroy: -> @detach()
 
