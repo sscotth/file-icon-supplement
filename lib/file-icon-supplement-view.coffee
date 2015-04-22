@@ -57,7 +57,7 @@ class FileIconSupplementView extends View
 
     atom.project.getPaths().forEach (projectPath) =>
       path = new Directory(projectPath)
-      path.onDidChange @addTreeViewClass
+      path.onDidChange => @addTreeViewClass()
 
   destroy: -> @detach()
 
@@ -74,7 +74,7 @@ class FileIconSupplementView extends View
     else
       @removeTabClass()
 
-  addTreeViewClass: =>
+  addTreeViewClass: ->
     $('ol.tree-view span.name.icon').addClass 'fis fis-tree'
     @reloadStyleSheets()
 
