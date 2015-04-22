@@ -1,5 +1,6 @@
 {CompositeDisposable, Directory} = require 'atom'
 {$, View} = require 'atom-space-pen-views'
+_ = require 'underscore-plus'
 
 module.exports =
 class FileIconSupplementView extends View
@@ -9,6 +10,14 @@ class FileIconSupplementView extends View
 
   initialize: (serializeState) ->
     @subscriptions = new CompositeDisposable
+
+    process.nextTick =>
+      @loadAllSettings()
+      loadAllSettings = _.debounce(@loadAllSettings, 100)
+      @subscriptions.add atom.styles.onDidAddStyleElement(loadAllSettings)
+      @subscriptions.add atom.styles.onDidRemoveStyleElement(loadAllSettings)
+      @subscriptions.add atom.styles.onDidUpdateStyleElement(loadAllSettings)
+
     @handleEvents()
 
   serialize: ->
