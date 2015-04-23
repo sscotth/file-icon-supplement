@@ -151,7 +151,7 @@ class FileIconSupplementView extends View
         => @removeFindAndReplaceEvent()
 
   removeFindAndReplaceEvent: ->
-    subscriptions.findAndReplace.dispose()
+    subscriptions.findAndReplace?.dispose()
 
   addGrammarStatusClass: ->
     $('.grammar-status a').addClass 'fis fis-grammar-status'
