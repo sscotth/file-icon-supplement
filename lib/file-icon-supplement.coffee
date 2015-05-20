@@ -1,13 +1,26 @@
 FileIconSupplementView = require './file-icon-supplement-view'
 
 module.exports =
-  configDefaults:
-    treeViewIcons: true
-    tabIcons: true
-    fuzzyFinderIcons: true
-    findAndReplaceIcons: true
-    grammarStatusIcons: true
-    grammarSelectorIcons: true
+
+  config:
+    treeViewIcons:
+      type: 'boolean'
+      default: true
+    tabIcons:
+      type: 'boolean'
+      default: true
+    fuzzyFinderIcons:
+      type: 'boolean'
+      default: true
+    findAndReplaceIcons:
+      type: 'boolean'
+      default: true
+    grammarStatusIcons:
+      type: 'boolean'
+      default: true
+    grammarSelectorIcons:
+      type: 'boolean'
+      default: true
 
   fileIconSupplementView: null
 
