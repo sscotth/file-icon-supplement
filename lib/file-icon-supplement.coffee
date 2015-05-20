@@ -25,10 +25,10 @@ module.exports =
   fileIconSupplementView: null
 
   activate: (state) ->
-    @fileIconSupplementView =
-      new FileIconSupplementView state.fileIconSupplementViewState
-    atom.packages.once "activated", =>
-      @fileIconSupplementView.loadAllSettings()
+    atom.packages.onDidActivateInitialPackages () =>
+      @fileIconSupplementView =
+        new FileIconSupplementView state.fileIconSupplementViewState
+      @loadAllSettings()
 
   deactivate: ->
     @fileIconSupplementView.destroy()
