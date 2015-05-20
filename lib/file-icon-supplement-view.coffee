@@ -48,6 +48,11 @@ class FileIconSupplementView extends View
       'file-icon-supplement:removeAllClass': => @removeAllClass()
       'file-icon-supplement:toggleAllClass': => @toggleClass()
 
+      'project-find:show': => @addFindAndReplaceEvent()
+      'fuzzy-finder:toggle-file-finder': => @loadFuzzyFinderSettings()
+      'grammar-selector:show': => @loadGrammarSelectorSettings()
+      'tree-view:recursive-expand-directory': => @loadTreeViewSettings()
+
     @subscriptions.add atom.config.observe,
       'file-icon-supplement.tabIcons': => @loadTabSettings()
       'file-icon-supplement.treeViewIcons': => @loadTreeViewSettings()
@@ -60,13 +65,6 @@ class FileIconSupplementView extends View
       'tree-view.hideVcsIgnoredFiles': => @loadTreeViewSettings()
       'tree-view.hideIgnoredNames': => @loadTreeViewSettings()
       'tree-view.expand-directory': => @loadTreeViewSettings()
-      'tree-view:recursive-expand-directory': => @loadTreeViewSettings()
-
-
-    @subscriptions.add atom.commands.add 'atom-workspace',
-      'project-find:show': => @addFindAndReplaceEvent()
-      'fuzzy-finder:toggle-file-finder': => @loadFuzzyFinderSettings()
-      'grammar-selector:show': => @loadGrammarSelectorSettings()
 
     @subscriptions.add atom.workspace.onDidChangeActivePaneItem,
       => @addTabClass()
