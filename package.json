@@ -7,9 +7,6 @@
   "engines": {
     "atom": "*"
   },
-  "activationEvents": [
-    "editor:display-updated"
-  ],
   "main": "./lib/file-icon-supplement",
   "devDependencies": {
     "wrench": "^1.5",
