@@ -53,18 +53,17 @@ class FileIconSupplementView extends View
       'grammar-selector:show': => @loadGrammarSelectorSettings()
       'tree-view:recursive-expand-directory': => @loadTreeViewSettings()
 
-    @subscriptions.add atom.config.observe,
-      'file-icon-supplement.tabIcons': => @loadTabSettings()
-      'file-icon-supplement.treeViewIcons': => @loadTreeViewSettings()
-      'file-icon-supplement.fuzzyFinderIcons': => @loadFuzzyFinderSettings()
-      'file-icon-supplement.findAndReplaceIcons': => @loadFindAndReplaceSettings()
-      'file-icon-supplement.grammarStatusIcons': => @loadGrammarStatusSettings()
+    @subscriptions.add atom.config.observe 'file-icon-supplement.tabIcons', => @loadTabSettings()
+    @subscriptions.add atom.config.observe 'file-icon-supplement.treeViewIcons', => @loadTreeViewSettings()
+    @subscriptions.add atom.config.observe 'file-icon-supplement.fuzzyFinderIcons', => @loadFuzzyFinderSettings()
+    @subscriptions.add atom.config.observe 'file-icon-supplement.findAndReplaceIcons', => @loadFindAndReplaceSettings()
+    @subscriptions.add atom.config.observe 'file-icon-supplement.grammarStatusIcons', => @loadGrammarStatusSettings()
 
-      'tabs.showIcons': => @loadTabSettings()
+    @subscriptions.add atom.config.observe 'tabs.showIcons', => @loadTabSettings()
 
-      'tree-view.hideVcsIgnoredFiles': => @loadTreeViewSettings()
-      'tree-view.hideIgnoredNames': => @loadTreeViewSettings()
-      'tree-view.expand-directory': => @loadTreeViewSettings()
+    @subscriptions.add atom.config.observe 'tree-view.hideVcsIgnoredFiles', => @loadTreeViewSettings()
+    @subscriptions.add atom.config.observe 'tree-view.hideIgnoredNames', => @loadTreeViewSettings()
+    @subscriptions.add atom.config.observe 'tree-view.expand-directory', => @loadTreeViewSettings()
 
     @subscriptions.add atom.workspace.onDidChangeActivePaneItem,
       => @addTabClass()
