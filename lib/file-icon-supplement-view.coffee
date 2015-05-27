@@ -126,8 +126,7 @@ class FileIconSupplementView extends View
     @reloadStyleSheets()
 
   removeFindAndReplaceClass: ->
-    atom.workspace.eachEditor ->
-      $('.fis.fis-find').removeClass 'fis fis-find'
+    $('.fis.fis-find').removeClass 'fis fis-find'
 
   loadFindAndReplaceSettings: ->
     if atom.config.get 'file-icon-supplement.findAndReplaceIcons'
