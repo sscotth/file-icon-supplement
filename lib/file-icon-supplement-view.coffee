@@ -40,10 +40,22 @@ class FileIconSupplementView extends View
       'file-icon-supplement:removeAllClass': => @removeAllClass()
       'file-icon-supplement:toggleAllClass': => @toggleClass()
 
+      'application:add-project-folder': => @loadTreeViewSettings()
       'project-find:show': => @addFindAndReplaceEvent()
       'fuzzy-finder:toggle-file-finder': => @loadFuzzyFinderSettings()
       'grammar-selector:show': => @loadGrammarSelectorSettings()
+
+      'tree-view:expand-directory': => @loadTreeViewSettings()
+      'tree-view:open-selected-entry': => @loadTreeViewSettings()
+      'tree-view:paste': => @loadTreeViewSettings()
       'tree-view:recursive-expand-directory': => @loadTreeViewSettings()
+      'tree-view:reveal-active-file': => @loadTreeViewSettings()
+      'tree-view:toggle': => @loadTreeViewSettings()
+      'tree-view:toggle-vcs-ignored-files': => @loadTreeViewSettings()
+
+    @subscriptions.add atom.commands.add 'atom-panel',
+      # tree-view:add-file, tree-view:add-folder, tree-view:duplicate, & tree-view:move dialogs
+      'core:confirm': => setTimeout @loadTreeViewSettings.bind(this), 100
 
     @subscriptions.add atom.config.onDidChange 'file-icon-supplement.tabIcons', => @loadTabSettings()
     @subscriptions.add atom.config.onDidChange 'file-icon-supplement.treeViewIcons', => @loadTreeViewSettings()
