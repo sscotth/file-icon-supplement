@@ -13,6 +13,7 @@ class FileIconSupplementView extends View
 
     process.nextTick =>
       @handleEvents()
+      @loadAllSettings()
 
   serialize: ->
 
@@ -44,17 +45,17 @@ class FileIconSupplementView extends View
       'grammar-selector:show': => @loadGrammarSelectorSettings()
       'tree-view:recursive-expand-directory': => @loadTreeViewSettings()
 
-    @subscriptions.add atom.config.observe 'file-icon-supplement.tabIcons', => @loadTabSettings()
-    @subscriptions.add atom.config.observe 'file-icon-supplement.treeViewIcons', => @loadTreeViewSettings()
-    @subscriptions.add atom.config.observe 'file-icon-supplement.fuzzyFinderIcons', => @loadFuzzyFinderSettings()
-    @subscriptions.add atom.config.observe 'file-icon-supplement.findAndReplaceIcons', => @loadFindAndReplaceSettings()
-    @subscriptions.add atom.config.observe 'file-icon-supplement.grammarStatusIcons', => @loadGrammarStatusSettings()
+    @subscriptions.add atom.config.onDidChange 'file-icon-supplement.tabIcons', => @loadTabSettings()
+    @subscriptions.add atom.config.onDidChange 'file-icon-supplement.treeViewIcons', => @loadTreeViewSettings()
+    @subscriptions.add atom.config.onDidChange 'file-icon-supplement.fuzzyFinderIcons', => @loadFuzzyFinderSettings()
+    @subscriptions.add atom.config.onDidChange 'file-icon-supplement.findAndReplaceIcons', => @loadFindAndReplaceSettings()
+    @subscriptions.add atom.config.onDidChange 'file-icon-supplement.grammarStatusIcons', => @loadGrammarStatusSettings()
 
-    @subscriptions.add atom.config.observe 'tabs.showIcons', => @loadTabSettings()
+    @subscriptions.add atom.config.onDidChange 'tabs.showIcons', => @loadTabSettings()
 
-    @subscriptions.add atom.config.observe 'tree-view.hideVcsIgnoredFiles', => @loadTreeViewSettings()
-    @subscriptions.add atom.config.observe 'tree-view.hideIgnoredNames', => @loadTreeViewSettings()
-    @subscriptions.add atom.config.observe 'tree-view.expand-directory', => @loadTreeViewSettings()
+    @subscriptions.add atom.config.onDidChange 'tree-view.hideVcsIgnoredFiles', => @loadTreeViewSettings()
+    @subscriptions.add atom.config.onDidChange 'tree-view.hideIgnoredNames', => @loadTreeViewSettings()
+    @subscriptions.add atom.config.onDidChange 'tree-view.expand-directory', => @loadTreeViewSettings()
 
     @subscriptions.add atom.workspace.onDidChangeActivePaneItem,
       => @addTabClass()

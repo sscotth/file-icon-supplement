@@ -28,7 +28,6 @@ module.exports =
     atom.packages.onDidActivateInitialPackages () =>
       @fileIconSupplementView =
         new FileIconSupplementView state.fileIconSupplementViewState
-      @loadAllSettings()
 
   deactivate: ->
     @fileIconSupplementView.destroy()
