@@ -75,8 +75,8 @@ class FileIconSupplementView extends View
       if item.uri is 'atom://config'
         Object.observe item, (obsv) =>
           if obsv[0].object.activePanelName is 'file-icon-supplement'
-            fisSettingsPane = document.getElementById('file-icon-supplement.iconStyle').closest('.section-body')
-            fisSettingsPane.appendChild(@element)
+            fisSettingsPane = $('#file-icon-supplement\\.iconStyle').closest('.section-body')
+            fisSettingsPane.append(@element)
         , ['update']
 
     atom.project.getPaths().forEach (projectPath) =>
