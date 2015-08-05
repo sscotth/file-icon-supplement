@@ -77,6 +77,13 @@ class FileIconSupplementView extends View
           if obsv[0].object.activePanelName is 'file-icon-supplement'
             fisSettingsPane = $('#file-icon-supplement\\.iconStyle').closest('.section-body')
             fisSettingsPane.append(@element)
+
+            fisSettingsPane
+              .find('#file-icon-supplement\\.goLangIcon')
+              .parent()
+              .find('.setting-title')
+              .append('<span class="name icon icon-rocket" style="margin-left: 5px;"></span>')
+
         , ['update']
 
     atom.project.getPaths().forEach (projectPath) =>
