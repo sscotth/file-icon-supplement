@@ -6,7 +6,8 @@ module.exports =
 class FileIconSupplementView extends View
 
   @content: ->
-    @div class: 'fis'
+    @div =>
+      @h1 'Hello World'
 
   initialize: (serializeState) ->
     @subscriptions = new CompositeDisposable
@@ -69,8 +70,14 @@ class FileIconSupplementView extends View
     @subscriptions.add atom.config.onDidChange 'tree-view.hideIgnoredNames', => @loadTreeViewSettings()
     @subscriptions.add atom.config.onDidChange 'tree-view.expand-directory', => @loadTreeViewSettings()
 
-    @subscriptions.add atom.workspace.onDidChangeActivePaneItem =>
+    @subscriptions.add atom.workspace.onDidChangeActivePaneItem (item) =>
       @addTabClass()
+      if item.uri is 'atom://config'
+        Object.observe item, (obsv) =>
+          if obsv[0].object.activePanelName is 'file-icon-supplement'
+            fisSettingsPane = document.getElementById('file-icon-supplement.iconStyle').closest('.section-body')
+            fisSettingsPane.appendChild(@element)
+        , ['update']
 
     atom.project.getPaths().forEach (projectPath) =>
       path = new Directory(projectPath)
