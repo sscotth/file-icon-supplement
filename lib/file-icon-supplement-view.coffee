@@ -69,8 +69,8 @@ class FileIconSupplementView extends View
     @subscriptions.add atom.config.onDidChange 'tree-view.hideIgnoredNames', => @loadTreeViewSettings()
     @subscriptions.add atom.config.onDidChange 'tree-view.expand-directory', => @loadTreeViewSettings()
 
-    @subscriptions.add atom.workspace.onDidChangeActivePaneItem,
-      => @addTabClass()
+    @subscriptions.add atom.workspace.onDidChangeActivePaneItem =>
+      @addTabClass()
 
     atom.project.getPaths().forEach (projectPath) =>
       path = new Directory(projectPath)
