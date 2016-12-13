@@ -70,19 +70,24 @@ class FileIconSupplementView extends View
     @subscriptions.add atom.config.onDidChange 'tree-view.hideIgnoredNames', => @loadTreeViewSettings()
     @subscriptions.add atom.config.onDidChange 'tree-view.expand-directory', => @loadTreeViewSettings()
 
+    @subscriptions.add atom.config.onDidChange 'file-icon-supplement.goLangIcon', (chg) ->
+      $('.fis-settings.go').removeClass('fis-icon-' + chg.oldValue).addClass('fis-icon-' + chg.newValue)
+
     @subscriptions.add atom.workspace.onDidChangeActivePaneItem (item) =>
       @addTabClass()
       if item.uri is 'atom://config'
         Object.observe item, (obsv) =>
+          console.log 'TODO: debounce', obsv
+
           if obsv[0].object.activePanelName is 'file-icon-supplement'
             fisSettingsPane = $('#file-icon-supplement\\.iconStyle').closest('.section-body')
             fisSettingsPane.append(@element)
-
-            fisSettingsPane
-              .find('#file-icon-supplement\\.goLangIcon')
-              .parent()
-              .find('.setting-title')
-              .append('<span class="name icon icon-rocket" style="margin-left: 5px;"></span>')
+            if (!fisSettingsPane.find('.fis-settings.go').length)
+              fisSettingsPane
+                .find('#file-icon-supplement\\.goLangIcon')
+                .parent()
+                .find('.setting-title')
+                .append('<span class="fis-settings go fis-icon-go" style="margin-left: 5px;"></span>')
 
         , ['update']
 

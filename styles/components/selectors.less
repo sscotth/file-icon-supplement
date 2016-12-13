@@ -7,6 +7,27 @@
 @grammar-status: ~'.fis-grammar-status';
 @grammar-selector: ~'.fis-grammar-selector';
 
+.fis-icon-go {
+  &:before {
+    font-family: 'File Icon Supplement';
+    content: @go;
+  }
+}
+
+.fis-icon-go-fill {
+  &:before {
+    font-family: 'File Icon Supplement';
+    content: @go-fill;
+  }
+}
+
+.fis-icon-go-fill-half {
+  &:before {
+    font-family: 'File Icon Supplement';
+    content: @go-fill-half;
+  }
+}
+
 @{tree-view}, @{tabs}, @{fuzzy-finder}, @{find-and-replace}{
   .icon-generator(extension; markdown, md, mdown, mkd, mkdown, rmd, ron, mmd; @markdown; @octicons);
   .icon-generator(extension; json, cson; @settings; @octicons);
